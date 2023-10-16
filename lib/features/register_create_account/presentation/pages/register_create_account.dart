@@ -32,6 +32,7 @@ class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, Registe
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
+                    duration: const Duration(milliseconds: 700),
                     child: Text(
                       "CREATE A NEW ACCOUNT",
                       style: CafeKit.util.cafeTextStyle.title,
@@ -42,6 +43,7 @@ class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, Registe
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
+                    duration: const Duration(milliseconds: 800),
                     child: Text(
                       "Hey complete the\ninformation to create a\naccount",
                       style: CafeKit.util.cafeTextStyle.text,
@@ -51,45 +53,40 @@ class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, Registe
                 SizedBox(height: context.sizeHeight() * 0.05),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeFirstTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 900),
                     child: CafeKit.widget.form.input(label: "Name"),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeFirstTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 1000),
                     child: CafeKit.widget.form.input(label: "Last name"),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeSecondTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 1100),
                     child: CafeKit.widget.form.input(label: "Email"),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeSecondTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 1200),
                     child: CafeKit.widget.form.input(label: "Password"),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.05),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeThirdTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 1300),
                     child: CafeKit.widget.button.formButton(
                       ButtonModel(label: "Create account", onTap: bloc.goToRegisterPlaceResidence),
                     ),

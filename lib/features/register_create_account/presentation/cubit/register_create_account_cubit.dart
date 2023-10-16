@@ -10,11 +10,7 @@ class RegisterCreateAccountCubit extends Cubit<RegisterCreateAccountState> {
 
   RegisterCreateAccountCubit()  : super(RegisterCreateAccountState.init());
 
-  init(BuildContext context) {
-   Future.delayed(const Duration(milliseconds: 150), ()=> emit(state.copyWith(activeFirstTime: true)));
-   Future.delayed(const Duration(milliseconds: 250), ()=> emit(state.copyWith(activeSecondTime: true)));
-   Future.delayed(const Duration(milliseconds: 400), ()=> emit(state.copyWith(activeThirdTime: true)));
-  }
+  init(BuildContext context) {}
 
   goToRegisterPlaceResidence()=> AppNavigator.push(Routes.REGISTER_PLACE_RESIDENCE);
 

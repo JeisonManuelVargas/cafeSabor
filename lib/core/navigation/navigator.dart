@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:cafe_sabor/features/register_phone_number/presentation/pages/register_phone_number.dart';
 import 'package:cafe_sabor/features/register_place_residence/presentation/pages/register_place_residence.dart';
+import 'package:cafe_sabor/features/validate_phone_number/presentation/pages/validate_phone_number.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cafe_sabor/core/animations/fade_page_route.dart';
 import 'package:cafe_sabor/features/home/presentation/pages/home.dart';
@@ -11,21 +13,26 @@ enum Routes {
   HOME,
   ONBOARD,
   CREATE_ACCOUNT,
+  REGISTER_PHONE_NUMBER,
+  VALIDATE_PHONE_NUMBER,
   REGISTER_PLACE_RESIDENCE,
 }
-
 
 
 class _Page {
   static const String home = '/home';
   static const String onboard = '/onboard';
   static const String createAccount = '/createAccount';
+  static const String registerPhoneNumber = '/registerPhoneNumber';
   static const String registerPlaceResidence = '/registerPlaceResidence';
+  static const String validatePhoneNumber = '/validatePhoneNumber';
 
   static const Map<Routes, String> _pageMap = {
     Routes.HOME: home,
     Routes.ONBOARD: onboard,
     Routes.CREATE_ACCOUNT: createAccount,
+    Routes.REGISTER_PHONE_NUMBER: registerPhoneNumber,
+    Routes.VALIDATE_PHONE_NUMBER: validatePhoneNumber,
     Routes.REGISTER_PLACE_RESIDENCE: registerPlaceResidence,
   };
 
@@ -58,6 +65,16 @@ class AppNavigator {
       case _Page.registerPlaceResidence:
         return _pageRoute(
           page: const RegisterPlaceResidence(),
+          settings: settings,
+        );
+      case _Page.registerPhoneNumber:
+        return _pageRoute(
+          page: const RegisterPhoneNumber(),
+          settings: settings,
+        );
+      case _Page.validatePhoneNumber:
+        return _pageRoute(
+          page: const ValidatePhoneNumber(),
           settings: settings,
         );
       default:

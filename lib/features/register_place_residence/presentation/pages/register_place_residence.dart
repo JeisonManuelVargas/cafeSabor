@@ -7,7 +7,8 @@ import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
 import 'package:cafe_sabor/features/register_place_residence/presentation/cubit/register_place_residence_cubit.dart';
 
-class RegisterPlaceResidence extends BasePage<RegisterPlaceResidenceState, RegisterPlaceResidenceCubit> {
+class RegisterPlaceResidence
+    extends BasePage<RegisterPlaceResidenceState, RegisterPlaceResidenceCubit> {
   const RegisterPlaceResidence({super.key});
 
   @override
@@ -32,6 +33,7 @@ class RegisterPlaceResidence extends BasePage<RegisterPlaceResidenceState, Regis
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
+                    duration: const Duration(milliseconds: 700),
                     child: Text(
                       "WHERE IS YOUR PLACE OF RESIDENCE",
                       style: CafeKit.util.cafeTextStyle.title,
@@ -42,6 +44,7 @@ class RegisterPlaceResidence extends BasePage<RegisterPlaceResidenceState, Regis
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
+                    duration: const Duration(milliseconds: 800),
                     child: Text(
                       "Hey complete the\ninformation to create a\naccount",
                       style: CafeKit.util.cafeTextStyle.text,
@@ -51,47 +54,45 @@ class RegisterPlaceResidence extends BasePage<RegisterPlaceResidenceState, Regis
                 SizedBox(height: context.sizeHeight() * 0.05),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeFirstTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 900),
                     child: CafeKit.widget.form.input(label: "Country"),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeFirstTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 1000),
                     child: CafeKit.widget.form.input(label: "State"),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeSecondTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds:1100),
                     child: CafeKit.widget.form.input(label: "City"),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeSecondTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 1200),
                     child: CafeKit.widget.form.input(label: "Address"),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.05),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
-                    startNow: state.activeThirdTime,
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 1300),
                     child: CafeKit.widget.button.formButton(
-                      ButtonModel(label: "Create address", onTap: () {}),
+                      ButtonModel(
+                        label: "Create address",
+                        onTap: bloc.goToCreatePhone,
+                      ),
                     ),
                   ),
                 ),

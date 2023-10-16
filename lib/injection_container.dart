@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cafe_sabor/features/home/presentation/cubit/home_cubit.dart';
 import 'package:cafe_sabor/features/onboard/presentation/cubit/onboard_cubit.dart';
+import 'package:cafe_sabor/features/register_phone_number/presentation/cubit/register_phone_number_cubit.dart';
+import 'package:cafe_sabor/features/validate_phone_number/presentation/cubit/validate_phone_number_cubit.dart';
 import 'package:cafe_sabor/features/register_create_account/presentation/cubit/register_create_account_cubit.dart';
 import 'package:cafe_sabor/features/register_place_residence/presentation/cubit/register_place_residence_cubit.dart';
 
@@ -16,6 +18,8 @@ Future<void> init() async {
     //cubit
     ..registerFactory<HomeCubit>(() => HomeCubit())
     ..registerFactory<OnboardCubit>(() => OnboardCubit())
+    ..registerFactory<RegisterPhoneNumberCubit>(() =>  RegisterPhoneNumberCubit())
+    ..registerFactory<ValidatePhoneNumberCubit>(() =>  ValidatePhoneNumberCubit())
     ..registerFactory<RegisterCreateAccountCubit>(() =>  RegisterCreateAccountCubit())
     ..registerFactory<RegisterPlaceResidenceCubit>(() =>  RegisterPlaceResidenceCubit())
 
