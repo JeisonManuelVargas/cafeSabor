@@ -12,7 +12,7 @@ class ValidatePhoneNumberCubit extends Cubit<ValidatePhoneNumberState> {
 
   init(BuildContext context) {}
 
-  goToValidatePlaceResidence()=> AppNavigator.push(Routes.REGISTER_PLACE_RESIDENCE);
+  goToHome()=> AppNavigator.push(Routes.HOME);
 
 
 }

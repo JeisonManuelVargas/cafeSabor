@@ -68,7 +68,7 @@ class ValidatePhoneNumber
                   child: CafeKit.widget.button.formButton(
                     ButtonModel(
                       label: "Continue",
-                      onTap: (){},
+                      onTap: bloc.goToHome,
                     ),
                   ),
                 ),
