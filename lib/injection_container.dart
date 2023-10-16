@@ -1,7 +1,13 @@
-import 'package:cafe_sabor/features/home/presentation/cubit/home_cubit.dart';
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:get_it/get_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cafe_sabor/features/home/presentation/cubit/home_cubit.dart';
+import 'package:cafe_sabor/features/onboard/presentation/cubit/onboard_cubit.dart';
+import 'package:cafe_sabor/features/register_create_account/presentation/cubit/register_create_account_cubit.dart';
+import 'package:cafe_sabor/features/register_place_residence/presentation/cubit/register_place_residence_cubit.dart';
+
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -9,6 +15,9 @@ Future<void> init() async {
 
     //cubit
     ..registerFactory<HomeCubit>(() => HomeCubit())
+    ..registerFactory<OnboardCubit>(() => OnboardCubit())
+    ..registerFactory<RegisterCreateAccountCubit>(() =>  RegisterCreateAccountCubit())
+    ..registerFactory<RegisterPlaceResidenceCubit>(() =>  RegisterPlaceResidenceCubit())
 
     //user Case
     /*..registerFactory<GetMovieListUseCase>(

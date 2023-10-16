@@ -1,18 +1,32 @@
 import 'dart:io';
 
+import 'package:cafe_sabor/features/register_place_residence/presentation/pages/register_place_residence.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cafe_sabor/core/animations/fade_page_route.dart';
 import 'package:cafe_sabor/features/home/presentation/pages/home.dart';
+import 'package:cafe_sabor/features/onboard/presentation/pages/omboarding.dart';
+import 'package:cafe_sabor/features/register_create_account/presentation/pages/register_create_account.dart';
 
 enum Routes {
   HOME,
+  ONBOARD,
+  CREATE_ACCOUNT,
+  REGISTER_PLACE_RESIDENCE,
 }
+
+
 
 class _Page {
   static const String home = '/home';
+  static const String onboard = '/onboard';
+  static const String createAccount = '/createAccount';
+  static const String registerPlaceResidence = '/registerPlaceResidence';
 
   static const Map<Routes, String> _pageMap = {
     Routes.HOME: home,
+    Routes.ONBOARD: onboard,
+    Routes.CREATE_ACCOUNT: createAccount,
+    Routes.REGISTER_PLACE_RESIDENCE: registerPlaceResidence,
   };
 
   static String? page(Routes routes) => _pageMap[routes];
@@ -31,9 +45,24 @@ class AppNavigator {
           page: const Home(),
           settings: settings,
         );
+      case _Page.onboard:
+        return _pageRoute(
+          page: const Onboard(),
+          settings: settings,
+        );
+      case _Page.createAccount:
+        return _pageRoute(
+          page: const RegisterCreateAccount(),
+          settings: settings,
+        );
+      case _Page.registerPlaceResidence:
+        return _pageRoute(
+          page: const RegisterPlaceResidence(),
+          settings: settings,
+        );
       default:
         return _pageRoute(
-          page: const Home(),
+          page: const Onboard(),
           settings: settings,
         );
     }

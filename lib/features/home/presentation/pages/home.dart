@@ -20,50 +20,55 @@ class Home extends BasePage<HomeState, HomeCubit> {
           margin: const EdgeInsets.symmetric(horizontal: 30),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          child: Column(
+          child: SingleChildScrollView(
+           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CafeKit.widget.form.input(label: "Email"),
-              const SizedBox(
-                height: 20,
+              const SizedBox(height: 20),
+              Text(
+                "CREATE A NEW ACCOUNT",
+                style: CafeKit.util.cafeTextStyle.titleXL,
               ),
+              const SizedBox(height: 20),
               Text(
                 "CREATE A NEW ACCOUNT",
                 style: CafeKit.util.cafeTextStyle.title,
               ),
-              const SizedBox(
-                height: 20,
+              const SizedBox(height: 20),
+              Text(
+                "CREATE A NEW ACCOUNT",
+                style: CafeKit.util.cafeTextStyle.titleBorna,
               ),
+              const SizedBox(height: 20),
               Text(
                 "CREATE A NEW ACCOUNT",
                 style: CafeKit.util.cafeTextStyle.description,
               ),
-              const SizedBox(
-                height: 20,
+              const SizedBox(height: 20),
+              Text(
+                "CREATE A NEW ACCOUNT",
+                style: CafeKit.util.cafeTextStyle.text,
               ),
+              const SizedBox(height: 20),
               CafeKit.widget.form.input(label: "reset password"),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               CafeKit.widget.form.input(label: "Password"),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               CafeKit.widget.button.formButton(ButtonModel(
                 label: "Continuar",
                 onTap: () {},
               )),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               CafeKit.widget.button.formButton(ButtonModel(
                 type: ButtonType.light,
                 label: "Continuar",
                 onTap: () {},
               )),
             ],
+          ),
           ),
         ),
       ),

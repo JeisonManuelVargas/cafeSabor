@@ -23,16 +23,20 @@ dev_dependencies:
   get_it: ^7.6.4
   flutter_bloc: ^8.1.3
   flutter_lints: ^2.0.3
-  firebase_auth: ^4.10.0
-  firebase_core: ^2.16.0
-  cloud_firestore: ^4.9.2
-  flutter_native_splash: ^2.3.2
+  firebase_auth: ^4.10.1
+  firebase_core: ^2.17.0
+  cloud_firestore: ^4.9.3
+  flutter_native_splash: ^2.3.3
   image_picker_loading_jm: ^0.0.4
   cafe_sabor_ui_kit:
     path: ../cafeSaborUiKit
 
 flutter:
   uses-material-design: true
+
+
+  assets:
+    - assets/image/
 
   fonts:
     - family: SaborFont
