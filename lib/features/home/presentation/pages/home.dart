@@ -1,10 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
-
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
 import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
+import 'package:cafe_sabor/core/extension/context_extension.dart';
 import 'package:cafe_sabor/features/home/presentation/cubit/home_cubit.dart';
+import 'package:cafe_sabor/features/home/presentation/widget/carousel_products_widget.dart';
+import 'package:cafe_sabor/features/home/presentation/widget/animated_description_widget.dart';
 
 class Home extends BasePage<HomeState, HomeCubit> {
   const Home({super.key});
@@ -15,60 +17,45 @@ class Home extends BasePage<HomeState, HomeCubit> {
   @override
   Widget buildPage(BuildContext context, state, bloc) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30),
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: SingleChildScrollView(
-           child: Column(
-            mainAxisSize: MainAxisSize.max,
+      body: SizedBox(
+        width: context.sizeWidth(),
+        height: context.sizeHeight(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CafeKit.widget.form.input(label: "Email"),
-              const SizedBox(height: 20),
-              Text(
-                "CREATE A NEW ACCOUNT",
-                style: CafeKit.util.cafeTextStyle.titleXL,
+              CarouselProductWidget(
+                products: state.products,
+                controller: state.controller,
               ),
-              const SizedBox(height: 20),
-              Text(
-                "CREATE A NEW ACCOUNT",
-                style: CafeKit.util.cafeTextStyle.title,
+              SizedBox(height: context.sizeHeight() * 0.02),
+              AnimatedDescriptionWidget(
+                pageController: state.controller,
+                handledReturnController: (controller, index) {
+                  controller.forward();
+                  bloc.handledChangeProductIndex(index);
+                },
+                body: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.sizeWidth() * 0.1,
+                  ),
+                  child: Text(
+                    state.products[state.productIndex].description,
+                    textAlign: TextAlign.center,
+                    style: CafeKit.util.cafeTextStyle.text,
+                  ),
+                ),
               ),
-              const SizedBox(height: 20),
-              Text(
-                "CREATE A NEW ACCOUNT",
-                style: CafeKit.util.cafeTextStyle.titleBorna,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "CREATE A NEW ACCOUNT",
-                style: CafeKit.util.cafeTextStyle.description,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "CREATE A NEW ACCOUNT",
-                style: CafeKit.util.cafeTextStyle.text,
-              ),
-              const SizedBox(height: 20),
-              CafeKit.widget.form.input(label: "reset password"),
-              const SizedBox(height: 20),
-              CafeKit.widget.form.input(label: "Password"),
-              const SizedBox(height: 20),
-              CafeKit.widget.button.formButton(ButtonModel(
-                label: "Continuar",
-                onTap: () {},
-              )),
-              const SizedBox(height: 20),
-              CafeKit.widget.button.formButton(ButtonModel(
-                type: ButtonType.light,
-                label: "Continuar",
-                onTap: () {},
-              )),
+              SizedBox(height: context.sizeHeight() * 0.02),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: CafeKit.widget.button.formButton(
+                  ButtonModel(label: "Suscribe", onTap: () {}),
+                ),
+              )
             ],
-          ),
           ),
         ),
       ),

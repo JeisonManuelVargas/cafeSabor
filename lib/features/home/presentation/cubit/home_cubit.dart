@@ -1,20 +1,20 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:cafe_sabor/core/model/product_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
+  HomeCubit() : super(HomeState.init());
 
-  HomeCubit()  : super(HomeState.init());
+  init(BuildContext context) => emit(HomeState.init());
 
-  init(BuildContext context) {
-
-    getMovieList(context: context);
-  }
-
-  getMovieList({required BuildContext context}) async {}
-
-  void changeListView(String key) {}
+  handledChangeProductIndex(int index) => Future.delayed(
+        const Duration(milliseconds: 300),
+        () => emit(state.copyWith(productIndex: index)),
+      );
 }

@@ -18,9 +18,12 @@ class _ColombianCoffeeWidgetState extends State<ColombianCoffeeWidget>
   void initState() {
     super.initState();
     controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2000));
-    rotationController = Tween(begin: 0.0, end: 2 * pi)
-        .animate(CurvedAnimation(parent: controller, curve: Curves.easeInOut));
+      vsync: this,
+      duration: const Duration(milliseconds: 2000),
+    );
+    rotationController = Tween(begin: 0.0, end: 2 * pi).animate(
+      CurvedAnimation(parent: controller, curve: Curves.easeInOut),
+    );
 
     controller.addListener(() {
       if (controller.status == AnimationStatus.completed) {
@@ -40,15 +43,14 @@ class _ColombianCoffeeWidgetState extends State<ColombianCoffeeWidget>
       children: [
         AnimatedBuilder(
           animation: controller,
-          builder: (BuildContext context, body) =>
-              Transform.rotate(
-                angle: rotationController.value,
-                child: Image(
-                  width: context.sizeWidth() * 0.3,
-                  height: context.sizeHeight() * 0.15,
-                  image: const AssetImage("assets/image/Component2.png"),
-                ),
-              ),
+          builder: (BuildContext context, body) => Transform.rotate(
+            angle: rotationController.value,
+            child: Image(
+              width: context.sizeWidth() * 0.3,
+              height: context.sizeHeight() * 0.15,
+              image: const AssetImage("assets/image/Component2.png"),
+            ),
+          ),
         ),
         Image(
           width: context.sizeWidth() * 0.13,
