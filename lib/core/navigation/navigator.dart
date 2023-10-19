@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cafe_sabor/core/model/product_model.dart';
+import 'package:cafe_sabor/features/detail_product/presentation/pages/detail_product.dart';
 import 'package:cafe_sabor/features/register_phone_number/presentation/pages/register_phone_number.dart';
 import 'package:cafe_sabor/features/register_place_residence/presentation/pages/register_place_residence.dart';
 import 'package:cafe_sabor/features/validate_phone_number/presentation/pages/validate_phone_number.dart';
@@ -13,15 +15,16 @@ enum Routes {
   HOME,
   ONBOARD,
   CREATE_ACCOUNT,
+  DETAIL_PRODUCT,
   REGISTER_PHONE_NUMBER,
   VALIDATE_PHONE_NUMBER,
   REGISTER_PLACE_RESIDENCE,
 }
 
-
 class _Page {
   static const String home = '/home';
   static const String onboard = '/onboard';
+  static const String detailProduct = '/detailProduct';
   static const String createAccount = '/createAccount';
   static const String registerPhoneNumber = '/registerPhoneNumber';
   static const String registerPlaceResidence = '/registerPlaceResidence';
@@ -30,6 +33,7 @@ class _Page {
   static const Map<Routes, String> _pageMap = {
     Routes.HOME: home,
     Routes.ONBOARD: onboard,
+    Routes.DETAIL_PRODUCT: detailProduct,
     Routes.CREATE_ACCOUNT: createAccount,
     Routes.REGISTER_PHONE_NUMBER: registerPhoneNumber,
     Routes.VALIDATE_PHONE_NUMBER: validatePhoneNumber,
@@ -45,6 +49,10 @@ class AppNavigator {
   static NavigatorState get state => navigatorKey.currentState!;
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    ProductModel productModel = ProductModel.init();
+    final params = settings.arguments;
+
+    if (params is ProductModel) productModel = params;
 
     switch (settings.name) {
       case _Page.home:
@@ -77,6 +85,12 @@ class AppNavigator {
           page: const ValidatePhoneNumber(),
           settings: settings,
         );
+      case _Page.detailProduct:
+        return _pageRoute(
+          page: DetailProduct(productModel: productModel),
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+        );
       default:
         return _pageRoute(
           page: const Onboard(),
@@ -107,7 +121,7 @@ class AppNavigator {
     Object? arguments,
     Function(dynamic)? callBack,
   }) =>
-      state.pushNamed(_Page.page(route)!, arguments: arguments).then(
+      state.pushNamed(_Page.page(route)!, arguments: arguments,).then(
             (value) => callBack != null ? callBack(value) : {},
           );
 

@@ -26,9 +26,28 @@ class Home extends BasePage<HomeState, HomeCubit> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CarouselProductWidget(
-                products: state.products,
-                controller: state.controller,
+              Stack(
+                children: [
+                  CarouselProductWidget(
+                    products: state.products,
+                    controller: state.controller,
+                    onTapProduct: bloc.goToDetailProduct,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: context.sizeHeight() * 0.09),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 33),
+                        child: Text(
+                          "JEISON IT'S\nCOFFEE TIME".toUpperCase(),
+                          style: CafeKit.util.cafeTextStyle.titleL,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
               SizedBox(height: context.sizeHeight() * 0.02),
               AnimatedDescriptionWidget(

@@ -15,4 +15,26 @@ class ProductModel {
     required this.images,
     required this.description,
   });
+
+  factory ProductModel.init() =>
+      ProductModel(
+        name: "",
+        images: [],
+        description: "",
+        color: CafeKit.util.color.green,
+      );
+
+  ProductModel copyWith({
+    String? name,
+    Color? color,
+    String? description,
+    List<ShowerProductModel>? images,
+  }) =>
+      ProductModel(
+        name: name ?? this.name,
+        color: color ?? this.color,
+        images: images ?? this.images,
+        description: description ?? this.description,
+      );
+
 }

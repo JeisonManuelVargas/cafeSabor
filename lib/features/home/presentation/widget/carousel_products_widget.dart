@@ -7,13 +7,15 @@ import 'package:cafe_sabor/core/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class CarouselProductWidget extends StatelessWidget {
-  final List<ProductModel> products;
   final PageController controller;
+  final List<ProductModel> products;
+  final Function(ProductModel) onTapProduct;
 
   const CarouselProductWidget({
     Key? key,
     required this.products,
     required this.controller,
+    required this.onTapProduct,
   }) : super(key: key);
 
   @override
@@ -26,19 +28,12 @@ class CarouselProductWidget extends StatelessWidget {
         itemCount: products.length,
         itemBuilder: (BuildContext context, int index) {
           return CafeKit.widget.compositeWidgets.showerProduct(
-            heightBackground: context.sizeHeight() * 0.66,
             images: products[index].images,
             backgroundColor: products[index].color,
+            onTap: ()=> onTapProduct(products[index]),
+            heightBackground: context.sizeHeight() * 0.66,
             backgroundBody: [
-              SizedBox(height: context.sizeHeight() * 0.09),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 33),
-                child: Text(
-                  "JEISON IT'S\nCOFFEE TIME".toUpperCase(),
-                  style: CafeKit.util.cafeTextStyle.titleL,
-                ),
-              ),
-              SizedBox(height: context.sizeHeight() * 0.02),
+              SizedBox(height: context.sizeHeight() * 0.23),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 33),
                 child: Text(
@@ -46,7 +41,7 @@ class CarouselProductWidget extends StatelessWidget {
                   style: CafeKit.util.cafeTextStyle.text,
                 ),
               ),
-              SizedBox(height: context.sizeHeight() * 0.11),
+              SizedBox(height: context.sizeHeight() * 0.1),
               Center(
                 child: Text(
                   products[index].name.toUpperCase(),
