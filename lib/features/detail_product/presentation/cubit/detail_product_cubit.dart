@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:cafe_sabor/features/detail_product/presentation/widget/bar_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,10 +11,7 @@ part 'detail_product_state.dart';
 class DetailProductCubit extends Cubit<DetailProductState> {
   DetailProductCubit() : super(DetailProductState.init(ProductModel.init()));
 
-  init(
-    BuildContext context, {
-    required ProductModel productModel,
-  }) {
+  init(BuildContext context, {required ProductModel productModel}) {
     final newImages = productModel.images.map((e) {
       final newElement = e.copyWith(
         width: e.width * 1.15,
@@ -32,5 +30,14 @@ class DetailProductCubit extends Cubit<DetailProductState> {
   handledChangeProductIndex(int index) => Future.delayed(
         const Duration(milliseconds: 300),
         () => emit(state.copyWith(productIndex: index)),
+      );
+
+  handledChangeSize(String key) => emit(
+        state.copyWith(
+          barSelectorSize: state.barSelectorSize.map((e) {
+            if (e.name == key) return e.copyWith(state: true);
+            return e.copyWith(state: false);
+          }).toList(),
+        ),
       );
 }

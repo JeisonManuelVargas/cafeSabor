@@ -63,6 +63,8 @@ class Home extends BasePage<HomeState, HomeCubit> {
                   child: Text(
                     state.products[state.productIndex].description,
                     textAlign: TextAlign.center,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     style: CafeKit.util.cafeTextStyle.text,
                   ),
                 ),

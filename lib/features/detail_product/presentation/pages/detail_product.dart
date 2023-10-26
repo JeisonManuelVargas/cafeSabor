@@ -5,6 +5,7 @@ import 'package:cafe_sabor/core/base/base_page.dart';
 import 'package:cafe_sabor/core/model/product_model.dart';
 import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
+import 'package:cafe_sabor/features/detail_product/presentation/widget/bar_selector.dart';
 import 'package:cafe_sabor/features/detail_product/presentation/cubit/detail_product_cubit.dart';
 
 class DetailProduct extends BasePage<DetailProductState, DetailProductCubit> {
@@ -39,24 +40,42 @@ class DetailProduct extends BasePage<DetailProductState, DetailProductCubit> {
                 backgroundColor: state.product.color,
                 heightBackground: context.sizeHeight() * 0.56,
               ),
-              SizedBox(height: context.sizeHeight() * 0.02),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.sizeWidth() * 0.1,
-                ),
+              SizedBox(height: context.sizeHeight() * 0.05),
+              BarSelector(
+                item: state.barSelectorSize,
+                onTap: bloc.handledChangeSize,
+              ),
+              SizedBox(height: context.sizeHeight() * 0.05),
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.symmetric(
+                    horizontal: context.sizeWidth() * 0.11),
                 child: Text(
                   state.product.description,
-                  textAlign: TextAlign.center,
-                  style: CafeKit.util.cafeTextStyle.text,
+                  textAlign: TextAlign.start,
+                  style: CafeKit.util.cafeTextStyle.descriptionProduct,
                 ),
               ),
-              SizedBox(height: context.sizeHeight() * 0.02),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: CafeKit.widget.button.formButton(
-                  ButtonModel(label: "Suscribe", onTap: () {}),
+              SizedBox(height: context.sizeHeight() * 0.05),
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.symmetric(
+                    horizontal: context.sizeWidth() * 0.11),
+                child: Text(
+                  state.product.price.toString(),
+                  style: CafeKit.util.cafeTextStyle.description,
                 ),
-              )
+              ),
+              SizedBox(height: context.sizeHeight() * 0.05),
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.symmetric(
+                    horizontal: context.sizeWidth() * 0.11),
+                child: CafeKit.widget.button.formButton(
+                  ButtonModel(label: "buy", onTap: () {}),
+                ),
+              ),
+              SizedBox(height: context.sizeHeight() * 0.05),
             ],
           ),
         ),

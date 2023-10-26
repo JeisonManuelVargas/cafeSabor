@@ -17,8 +17,9 @@ class HomeState {
         products: [
           ProductModel(
             name: "Borbón",
+            price: 17.9,
             color: CafeKit.util.color.lightYellow,
-            description: "El café Arábica es significativo en la producción del café especial, y Bourbon es una de las variedades que toma protagonismo.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
             images: [
               ShowerProductModel(
                 width: 0.35,
@@ -45,9 +46,10 @@ class HomeState {
             ],
           ),
           ProductModel(
+            price: 17.9,
             name: "Variedad Castillo",
             color: CafeKit.util.color.green,
-            description: "La variedad Castillo, cuyo nombre es en honor al investigador Jaime Castillo Zapata, se obtuvo a partir del cruce de la variedad Caturra y el Híbrido de Timor.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
             images: [
               ShowerProductModel(
                 width: 0.35,
