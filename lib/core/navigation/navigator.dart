@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cafe_sabor/core/model/product_model.dart';
 import 'package:cafe_sabor/features/detail_product/presentation/pages/detail_product.dart';
+import 'package:cafe_sabor/features/profile/presentation/pages/profile.dart';
 import 'package:cafe_sabor/features/register_phone_number/presentation/pages/register_phone_number.dart';
 import 'package:cafe_sabor/features/register_place_residence/presentation/pages/register_place_residence.dart';
 import 'package:cafe_sabor/features/validate_phone_number/presentation/pages/validate_phone_number.dart';
@@ -14,6 +15,7 @@ import 'package:cafe_sabor/features/register_create_account/presentation/pages/r
 enum Routes {
   HOME,
   ONBOARD,
+  PROFILE,
   CREATE_ACCOUNT,
   DETAIL_PRODUCT,
   REGISTER_PHONE_NUMBER,
@@ -23,6 +25,7 @@ enum Routes {
 
 class _Page {
   static const String home = '/home';
+  static const String profile = '/profile';
   static const String onboard = '/onboard';
   static const String detailProduct = '/detailProduct';
   static const String createAccount = '/createAccount';
@@ -32,6 +35,7 @@ class _Page {
 
   static const Map<Routes, String> _pageMap = {
     Routes.HOME: home,
+    Routes.PROFILE: profile,
     Routes.ONBOARD: onboard,
     Routes.DETAIL_PRODUCT: detailProduct,
     Routes.CREATE_ACCOUNT: createAccount,
@@ -83,6 +87,11 @@ class AppNavigator {
       case _Page.validatePhoneNumber:
         return _pageRoute(
           page: const ValidatePhoneNumber(),
+          settings: settings,
+        );
+      case _Page.profile:
+        return _pageRoute(
+          page: const Profile(),
           settings: settings,
         );
       case _Page.detailProduct:

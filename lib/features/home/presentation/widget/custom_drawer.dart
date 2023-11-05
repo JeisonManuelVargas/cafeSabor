@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:cafe_sabor/core/extension/context_extension.dart';
+import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 
@@ -36,7 +37,10 @@ class CustomDrawer extends StatelessWidget {
               ),
               SizedBox(height: context.sizeHeight() * 0.07),
               _generateOptions(
-                onTap: () {},
+                onTap: () {
+                Scaffold.of(context).closeEndDrawer();
+                AppNavigator.push(Routes.PROFILE);
+                },
                 title: "PROFILE",
                 context: context,
                 icon: Icons.person_2_outlined,
@@ -92,7 +96,7 @@ class CustomDrawer extends StatelessWidget {
   }) =>
       InkWell(
         borderRadius: BorderRadius.circular(10),
-        onTap: () {},
+        onTap: () => onTap(),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: context.sizeHeight() * 0.02),
           child: Row(
