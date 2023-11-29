@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cafe_sabor/core/model/product_model.dart';
 import 'package:cafe_sabor/features/detail_product/presentation/pages/detail_product.dart';
+import 'package:cafe_sabor/features/my_products/presentation/pages/my_products.dart';
 import 'package:cafe_sabor/features/profile/presentation/pages/profile.dart';
 import 'package:cafe_sabor/features/register_phone_number/presentation/pages/register_phone_number.dart';
 import 'package:cafe_sabor/features/register_place_residence/presentation/pages/register_place_residence.dart';
@@ -16,6 +17,7 @@ enum Routes {
   HOME,
   ONBOARD,
   PROFILE,
+  MY_PRODUCTS,
   CREATE_ACCOUNT,
   DETAIL_PRODUCT,
   REGISTER_PHONE_NUMBER,
@@ -27,6 +29,7 @@ class _Page {
   static const String home = '/home';
   static const String profile = '/profile';
   static const String onboard = '/onboard';
+  static const String myProducts = '/myProducts';
   static const String detailProduct = '/detailProduct';
   static const String createAccount = '/createAccount';
   static const String registerPhoneNumber = '/registerPhoneNumber';
@@ -37,6 +40,7 @@ class _Page {
     Routes.HOME: home,
     Routes.PROFILE: profile,
     Routes.ONBOARD: onboard,
+    Routes.MY_PRODUCTS: myProducts,
     Routes.DETAIL_PRODUCT: detailProduct,
     Routes.CREATE_ACCOUNT: createAccount,
     Routes.REGISTER_PHONE_NUMBER: registerPhoneNumber,
@@ -97,6 +101,12 @@ class AppNavigator {
       case _Page.detailProduct:
         return _pageRoute(
           page: DetailProduct(productModel: productModel),
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+        );
+      case _Page.myProducts:
+        return _pageRoute(
+          page: const MyProducts(),
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
         );

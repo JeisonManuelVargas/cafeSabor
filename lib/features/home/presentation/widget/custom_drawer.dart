@@ -37,34 +37,37 @@ class CustomDrawer extends StatelessWidget {
               ),
               SizedBox(height: context.sizeHeight() * 0.07),
               _generateOptions(
-                onTap: () {
-                Scaffold.of(context).closeEndDrawer();
-                AppNavigator.push(Routes.PROFILE);
-                },
                 title: "PROFILE",
                 context: context,
                 icon: Icons.person_2_outlined,
+                onTap: () {
+                  Scaffold.of(context).closeEndDrawer();
+                  AppNavigator.push(Routes.PROFILE);
+                },
               ),
               SizedBox(height: context.sizeHeight() * 0.02),
               _generateOptions(
-                onTap: () {},
-                title: "PRODUCTS",
                 context: context,
+                title: "PRODUCTS",
                 icon: Icons.shopping_bag_outlined,
+                onTap: () {
+                  Scaffold.of(context).closeEndDrawer();
+                  AppNavigator.push(Routes.MY_PRODUCTS);
+                },
               ),
               SizedBox(height: context.sizeHeight() * 0.02),
               _generateOptions(
-                onTap: () {},
                 title: "RECIPES",
                 context: context,
                 icon: Icons.coffee_outlined,
+                onTap: () {},
               ),
               SizedBox(height: context.sizeHeight() * 0.02),
               _generateOptions(
-                  onTap: () {},
                   title: "LOGOUT",
                   context: context,
                   icon: Icons.close,
+                  onTap: () {},
                   customIcon: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,

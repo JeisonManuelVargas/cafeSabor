@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:cafe_sabor/features/detail_product/presentation/cubit/detail_product_cubit.dart';
+import 'package:cafe_sabor/features/my_products/presentation/cubit/my_products_cubit.dart';
 import 'package:cafe_sabor/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +22,7 @@ Future<void> init() async {
     ..registerFactory<HomeCubit>(() => HomeCubit())
     ..registerFactory<ProfileCubit>(() =>  ProfileCubit())
     ..registerFactory<OnboardCubit>(() => OnboardCubit())
+    ..registerFactory<MyProductsCubit>(() => MyProductsCubit())
     ..registerFactory<DetailProductCubit>(() => DetailProductCubit())
     ..registerFactory<RegisterPhoneNumberCubit>(() =>  RegisterPhoneNumberCubit())
     ..registerFactory<ValidatePhoneNumberCubit>(() =>  ValidatePhoneNumberCubit())
