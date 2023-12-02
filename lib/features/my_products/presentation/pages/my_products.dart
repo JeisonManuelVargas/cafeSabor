@@ -46,11 +46,83 @@ class MyProducts extends BasePage<MyProductsState, MyProductsCubit> {
                     "Suscribed products",
                     style: CafeKit.util.cafeTextStyle.descriptionProduct,
                   ),
+                  SizedBox(height: context.sizeHeight() * 0.04),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(
+                        state.products.length,
+                        (index) => Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: context.sizeWidth() * 0.06,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Stack(
+                                alignment: Alignment.topCenter,
+                                children: [
+                                  Container(
+                                    height: context.sizeHeight() * 0.22,
+                                    width: context.sizeWidth() * 0.3,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: state.products[index].color,
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                        top: context.sizeHeight() * 0.024),
+                                    height: context.sizeHeight() * 0.22,
+                                    width: context.sizeWidth() * 0.2,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          bloc.handledToFindImageProduct(
+                                            state.products[index],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: context.sizeHeight() * 0.02),
+                              Text(
+                                state.products[index].name,
+                                style: CafeKit
+                                    .util.cafeTextStyle.descriptionProduct
+                                    .copyWith(fontWeight: FontWeight.w700),
+                              ),
+                              SizedBox(height: context.sizeHeight() * 0.01),
+                              Text("250 gr/big bag",
+                                  style: CafeKit
+                                      .util.cafeTextStyle.descriptionProduct),
+                              SizedBox(height: context.sizeHeight() * 0.01),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: context.sizeHeight() * 0.007,
+                                  horizontal: context.sizeWidth() * 0.03,
+                                ),
+                                decoration: BoxDecoration(
+                                    color: CafeKit.util.color.green,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Text("250 gr/big bag",
+                                    style: CafeKit
+                                        .util.cafeTextStyle.descriptionProduct),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
               SizedBox(height: context.sizeHeight() * 0.1),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: context.sizeWidth() * 0.1),
+                padding:
+                    EdgeInsets.symmetric(horizontal: context.sizeWidth() * 0.1),
                 child: CafeKit.widget.button.formButton(
                   ButtonModel(label: "More products", onTap: () {}),
                 ),
