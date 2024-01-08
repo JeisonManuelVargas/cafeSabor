@@ -1,4 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:cafe_sabor/core/navigation/navigator.dart';
+import 'package:cafe_sabor/features/my_products/presentation/widget/image_product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
@@ -28,6 +30,14 @@ class MyProducts extends BasePage<MyProductsState, MyProductsCubit> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: context.sizeHeight() * 0.1),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: context.sizeHeight() * 0.03),
+                child: CafeKit.widget.button.goBackButton(
+                  onTap: () => AppNavigator.pop(),
+                ),
+              ),
+              SizedBox(height: context.sizeHeight() * 0.05),
               CafeKit.widget.card.simpleCard(
                 alignment: CrossAxisAlignment.start,
                 paddingTop: context.sizeHeight() * 0.05,
@@ -59,37 +69,16 @@ class MyProducts extends BasePage<MyProductsState, MyProductsCubit> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Stack(
-                                alignment: Alignment.topCenter,
-                                children: [
-                                  Container(
-                                    height: context.sizeHeight() * 0.22,
-                                    width: context.sizeWidth() * 0.3,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: state.products[index].color,
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        top: context.sizeHeight() * 0.024),
-                                    height: context.sizeHeight() * 0.22,
-                                    width: context.sizeWidth() * 0.2,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          bloc.handledToFindImageProduct(
-                                            state.products[index],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
+                              ImageProductWidget(
+                                color: state.products[index].color,
+                                image: bloc.handledToFindImageProduct(
+                                  state.products[index],
+                                ),
                               ),
                               SizedBox(height: context.sizeHeight() * 0.02),
                               Text(
                                 state.products[index].name,
+                                maxLines: 2,
                                 style: CafeKit
                                     .util.cafeTextStyle.descriptionProduct
                                     .copyWith(fontWeight: FontWeight.w700),
@@ -101,13 +90,14 @@ class MyProducts extends BasePage<MyProductsState, MyProductsCubit> {
                               SizedBox(height: context.sizeHeight() * 0.01),
                               Container(
                                 padding: EdgeInsets.symmetric(
-                                  vertical: context.sizeHeight() * 0.007,
+                                  vertical: context.sizeHeight() * 0.01,
                                   horizontal: context.sizeWidth() * 0.03,
                                 ),
                                 decoration: BoxDecoration(
                                     color: CafeKit.util.color.green,
                                     borderRadius: BorderRadius.circular(30)),
-                                child: Text("250 gr/big bag",
+                                child: Text(
+                                    "${state.products[index].price} USD",
                                     style: CafeKit
                                         .util.cafeTextStyle.descriptionProduct),
                               ),

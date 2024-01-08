@@ -6,10 +6,12 @@ import 'package:cafe_sabor/injection_container.dart' as di;
 import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  /*await Firebase.initializeApp();*/
+  await Firebase.initializeApp();
   di.init();
   runApp(const MyApp());
 }

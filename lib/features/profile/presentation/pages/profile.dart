@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
@@ -28,6 +29,14 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: context.sizeHeight() * 0.1),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: context.sizeHeight() * 0.03),
+                child: CafeKit.widget.button.goBackButton(
+                  onTap: () => AppNavigator.pop(),
+                ),
+              ),
+              SizedBox(height: context.sizeHeight() * 0.05),
               Text(
                 "JEISON",
                 style: CafeKit.util.cafeTextStyle.titleXL,
