@@ -30,7 +30,8 @@ dev_dependencies:
   flutter_native_splash: ^2.3.6
   image_picker_loading_jm: ^0.0.4
   cafe_sabor_ui_kit:
-    path: ../cafeSaborUiKit
+    git:
+      url: https://github.com/JeisonManuelVargas/cafeSaborUiKit
 
 flutter:
   uses-material-design: true
