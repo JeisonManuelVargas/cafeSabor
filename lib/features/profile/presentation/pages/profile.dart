@@ -38,7 +38,7 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
               ),
               SizedBox(height: context.sizeHeight() * 0.05),
               Text(
-                "JEISO",
+                "JEISON",
                 style: CafeKit.util.cafeTextStyle.titleXL,
               ),
               SizedBox(height: context.sizeHeight() * 0.05),
