@@ -1,4 +1,5 @@
 name: build feature branch
+
 on:
   pull_request:
     branches:
@@ -23,8 +24,8 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
-      - name: Configured Firebase
-        run:  echo "${{ secrets.GOOGLESERVICES }}" > google-services.json
+      - name: Configure Firebase
+        run: echo "${{ secrets.FIREBASE_CONFIG }}" > google-services.json
 
       - name: Flutter build apk
         run: flutter build apk
