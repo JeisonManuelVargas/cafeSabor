@@ -23,5 +23,8 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
+      - name: Configured Firebase
+        run:  echo "${{ secrets.GOOGLESERVICES }}" > google-services.json
+
       - name: Flutter build apk
         run: flutter build apk
