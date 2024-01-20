@@ -23,8 +23,5 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
-      - name: Flutter android licenses
-        run: flutter doctor --android-licenses
-
       - name: Flutter build apk
         run: flutter build apk
