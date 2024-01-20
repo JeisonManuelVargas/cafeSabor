@@ -18,14 +18,19 @@ jobs:
         with:
           flutter-version: '3.13.8'
 
+
+      - name: Update latest version in realtime database
+        uses: w9jds/firebase-trigger@master
+        with:
+          credentials: ${{ secrets.FIREBASE_CONFIG }}
+          databaseUrl: https://[project_id].firebaseio.com
+          path: android/app/google-services.json
+
       - name: Flutter clean
         run: flutter clean
 
       - name: Flutter pub get
         run: flutter pub get
-
-      - name: Configure Firebase
-        run: echo "${{ secrets.FIREBASE_CONFIG }}" > android/app/google-services.json
 
       - name: Flutter build apk
         run: flutter build apk
