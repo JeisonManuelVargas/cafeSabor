@@ -29,9 +29,10 @@
 .pub-cache/
 .pub/
 build/
+pubspec.lock
 
 # google services
-/app/google-services.json
+analysis_options.yaml/app/google-services.json
 
 # Web related
 lib/generated_plugin_registrant.dart
