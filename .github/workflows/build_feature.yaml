@@ -24,8 +24,13 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
-      - name: Configure Firebase
-        run: echo "${{ secrets.FIREBASE_CONFIG }}" > ./android/app/google-services.json
+      - name: Create google-services.json file
+        run: cat ./android/app/google-services.json | base64
+
+      - name: Putting data
+        env:
+          DATA: ${{ secrets.FIREBASE_CONFIG }}
+        run: echo $DATA > ./android/app/google-services.json
 
       - name: Flutter build apk
         run: flutter build apk
