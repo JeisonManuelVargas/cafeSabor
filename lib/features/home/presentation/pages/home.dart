@@ -58,7 +58,7 @@ class Home extends BasePage<HomeState, HomeCubit> {
                                   Icons.menu,
                                   color: CafeKit.util.color.backgroundButton,
                                   size: 30,
-                                ),
+                                ),e
                               );
                             })
                           ],
