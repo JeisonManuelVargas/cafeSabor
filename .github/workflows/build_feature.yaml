@@ -1,0 +1,36 @@
+name: build feature branch
+
+on:
+  pull_request:
+    branches: [ develop ]
+    type: [ opened, reopened ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.8'
+
+      - name: Flutter clean
+        run: flutter clean
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Create google-services.json file
+        run: cat ./android/app/google-services.json | base64
+
+      - name: Putting data
+        env:
+          DATA: ${{ secrets.FIREBASE_CONFIG }}
+        run: echo $DATA > ./android/app/google-services.json
+
+      - name: Flutter build apk
+        run: flutter build apk
