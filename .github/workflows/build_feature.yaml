@@ -2,8 +2,8 @@ name: build feature branch
 
 on:
   pull_request:
-    branches:
-      - develop
+    branches: [ develop ]
+    type: [ opened, reopened ]
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
         run: flutter pub get
 
       - name: Configure Firebase
-        run: echo "${{ secrets.FIREBASE_CONFIG }}" > android/app/google-services.json
+        run: echo "${{ secrets.FIREBASE_CONFIG }}" > ./android/app/google-services.json
 
       - name: Flutter build apk
         run: flutter build apk

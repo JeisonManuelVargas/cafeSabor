@@ -32,7 +32,7 @@ build/
 pubspec.lock
 
 # google services
-analysis_options.yaml/app/google-services.json
+android/app/google-services.json
 
 # Web related
 lib/generated_plugin_registrant.dart
