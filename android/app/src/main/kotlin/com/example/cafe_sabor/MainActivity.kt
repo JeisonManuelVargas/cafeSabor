@@ -1,4 +1,4 @@
-package com.example.cafe_sabor
+package com.cafe.cafe_sabor
 
 import io.flutter.embedding.android.FlutterActivity
 
