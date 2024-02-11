@@ -3,6 +3,11 @@
 import 'package:cafe_sabor/features/detail_product/presentation/cubit/detail_product_cubit.dart';
 import 'package:cafe_sabor/features/my_products/presentation/cubit/my_products_cubit.dart';
 import 'package:cafe_sabor/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:cafe_sabor/features/validate_phone_number/data/data_sources/validate_phone_number_data_source.dart';
+import 'package:cafe_sabor/features/validate_phone_number/data/repositories/validate_phone_number_repository_impl.dart';
+import 'package:cafe_sabor/features/validate_phone_number/domain/repositories/validate_phone_number_repository.dart';
+import 'package:cafe_sabor/features/validate_phone_number/domain/use_case/create_data_user_use_case.dart';
+import 'package:cafe_sabor/features/validate_phone_number/domain/use_case/register_with_email_password_use_case.dart';
 import 'package:get_it/get_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,28 +30,27 @@ Future<void> init() async {
     ..registerFactory<MyProductsCubit>(() => MyProductsCubit())
     ..registerFactory<DetailProductCubit>(() => DetailProductCubit())
     ..registerFactory<RegisterPhoneNumberCubit>(() =>  RegisterPhoneNumberCubit())
-    ..registerFactory<ValidatePhoneNumberCubit>(() =>  ValidatePhoneNumberCubit())
+    ..registerFactory<ValidatePhoneNumberCubit>(() =>  ValidatePhoneNumberCubit(createDataUserUseCase: sl(), registerWithEmailPasswordUseCase: sl()))
     ..registerFactory<RegisterCreateAccountCubit>(() =>  RegisterCreateAccountCubit())
     ..registerFactory<RegisterPlaceResidenceCubit>(() =>  RegisterPlaceResidenceCubit())
 
     //user Case
-    /*..registerFactory<GetMovieListUseCase>(
-      () => GetMovieListUseCase(homeRepository: sl()),
-    )*/
+    ..registerFactory<CreateDataUserUseCase>(
+      () => CreateDataUserUseCase(validatePhoneNumberRepository: sl()),
+    )
+    ..registerFactory<RegisterWithEmailPasswordUseCase>(
+      () => RegisterWithEmailPasswordUseCase(validatePhoneNumberRepository: sl()),
+    )
 
     //Repository
-    /*..registerFactory<HomeRepository>(
-      () => HomeRepositoryImpl(homeDataSource: sl()),
+    ..registerFactory<ValidatePhoneNumberRepository>(
+      () => ValidatePhoneNumberRepositoryImpl(validatePhoneNumberDataSource: sl()),
     )
-    ..registerFactory<DetailMovieRepository>(
-      () => DetailMovieRepositoryImpl(detailMovieDataSource: sl()),
-    )*/
     //Dara source
-    /*..registerFactory<HomeDataSource>(() => HomeDataSourceImpl(db: sl()))
-    ..registerFactory<DetailMovieDataSource>(() => DetailMovieDataSourceImpl(db: sl()))*/
+    ..registerFactory<ValidatePhoneNumberDataSource>(() => ValidatePhoneNumberDataSourceImpl(db: sl(), auth: sl()))
     
     
     
-    ..registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance)
-    ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+    ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
+    ..registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
 }

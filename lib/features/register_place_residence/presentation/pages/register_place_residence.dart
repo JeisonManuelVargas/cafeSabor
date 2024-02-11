@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
@@ -9,11 +10,13 @@ import 'package:cafe_sabor/features/register_place_residence/presentation/cubit/
 
 class RegisterPlaceResidence
     extends BasePage<RegisterPlaceResidenceState, RegisterPlaceResidenceCubit> {
-  const RegisterPlaceResidence({super.key});
+  final UserModel userModel;
+
+  const RegisterPlaceResidence({super.key, required this.userModel});
 
   @override
   RegisterPlaceResidenceCubit createBloc(BuildContext context) =>
-      sl<RegisterPlaceResidenceCubit>()..init(context);
+      sl<RegisterPlaceResidenceCubit>()..init(context, userModel);
 
   @override
   Widget buildPage(BuildContext context, state, bloc) {
@@ -56,7 +59,10 @@ class RegisterPlaceResidence
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
                     duration: const Duration(milliseconds: 900),
-                    child: CafeKit.widget.form.input(label: "Country"),
+                    child: CafeKit.widget.form.input(
+                      label: "Country",
+                      controller: state.countryController,
+                    ),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
@@ -64,15 +70,21 @@ class RegisterPlaceResidence
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
                     duration: const Duration(milliseconds: 1000),
-                    child: CafeKit.widget.form.input(label: "State"),
+                    child: CafeKit.widget.form.input(
+                      label: "State",
+                      controller: state.stateController,
+                    ),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
                 CafeKit.widget.animate.animateContainer(
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
-                    duration: const Duration(milliseconds:1100),
-                    child: CafeKit.widget.form.input(label: "City"),
+                    duration: const Duration(milliseconds: 1100),
+                    child: CafeKit.widget.form.input(
+                      label: "City",
+                      controller: state.cityController,
+                    ),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
@@ -80,7 +92,10 @@ class RegisterPlaceResidence
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
                     duration: const Duration(milliseconds: 1200),
-                    child: CafeKit.widget.form.input(label: "Address"),
+                    child: CafeKit.widget.form.input(
+                      label: "Address",
+                      controller: state.addressController,
+                    ),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.05),
@@ -96,6 +111,7 @@ class RegisterPlaceResidence
                     ),
                   ),
                 ),
+                SizedBox(height: context.sizeHeight() * 0.04),
               ],
             ),
           ),

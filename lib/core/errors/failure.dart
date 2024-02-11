@@ -1,7 +1,10 @@
-abstract class Failure {}
+abstract class Failure {
+  late String message;
+}
 
-class HomeFailure implements Failure {
-  final String code;
+class ValidatePhoneNumberFailure implements Failure {
+  @override
+  String message;
 
-  HomeFailure({required this.code});
+  ValidatePhoneNumberFailure({this.message = ""});
 }

@@ -1,30 +1,36 @@
 part of 'register_create_account_cubit.dart';
 
 class RegisterCreateAccountState {
-  final bool activeFirstTime;
-  final bool activeSecondTime;
-  final bool activeThirdTime;
+  final UserModel userModel;
+  final TextEditingController nameController;
+  final TextEditingController emailController;
+  final TextEditingController lastNameController;
+  final TextEditingController passwordController;
 
   const RegisterCreateAccountState({
-    required this.activeFirstTime,
-    required this.activeSecondTime,
-    required this.activeThirdTime,
+    required this.userModel,
+    required this.emailController,
+    required this.nameController,
+    required this.lastNameController,
+    required this.passwordController,
   });
 
-  factory RegisterCreateAccountState.init() => const RegisterCreateAccountState(
-        activeFirstTime: false,
-        activeSecondTime: false,
-        activeThirdTime: false,
+  factory RegisterCreateAccountState.init() => RegisterCreateAccountState(
+        userModel: UserModel.init(),
+        nameController: TextEditingController(),
+        emailController: TextEditingController(),
+        passwordController: TextEditingController(),
+        lastNameController: TextEditingController(),
       );
 
   RegisterCreateAccountState copyWith({
-    bool? activeFirstTime,
-    bool? activeSecondTime,
-    bool? activeThirdTime,
+    UserModel? userModel,
   }) =>
       RegisterCreateAccountState(
-        activeFirstTime: activeFirstTime ?? this.activeFirstTime,
-        activeSecondTime: activeSecondTime ?? this.activeSecondTime,
-        activeThirdTime: activeThirdTime ?? this.activeThirdTime,
+        nameController: nameController,
+        emailController: emailController,
+        lastNameController: lastNameController,
+        passwordController: passwordController,
+        userModel: userModel ?? this.userModel,
       );
 }

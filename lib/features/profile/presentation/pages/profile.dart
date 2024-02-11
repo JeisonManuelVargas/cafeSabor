@@ -57,11 +57,20 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
               ),
               CafeKit.widget.card.simpleCard(
                 body: [
-                  CafeKit.widget.form.input(label: "Name"),
+                  CafeKit.widget.form.input(
+                    label: "Name",
+                    controller: state.nameController,
+                  ),
                   SizedBox(height: context.sizeHeight() * 0.035),
-                  CafeKit.widget.form.input(label: "Last name"),
+                  CafeKit.widget.form.input(
+                    label: "Last name",
+                    controller: state.lastNameController,
+                  ),
                   SizedBox(height: context.sizeHeight() * 0.035),
-                  CafeKit.widget.form.input(label: "Email"),
+                  CafeKit.widget.form.input(
+                    label: "Email",
+                    controller: state.emailController,
+                  ),
                 ],
               ),
               CafeKit.widget.card.simpleCard(
@@ -73,13 +82,25 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
                     style: CafeKit.util.cafeTextStyle.titleBorna,
                   ),
                   SizedBox(height: context.sizeHeight() * 0.035),
-                  CafeKit.widget.form.input(label: "Country"),
+                  CafeKit.widget.form.input(
+                    label: "Country",
+                    controller: state.countryController,
+                  ),
                   SizedBox(height: context.sizeHeight() * 0.035),
-                  CafeKit.widget.form.input(label: "State"),
+                  CafeKit.widget.form.input(
+                    label: "State",
+                    controller: state.stateController,
+                  ),
                   SizedBox(height: context.sizeHeight() * 0.035),
-                  CafeKit.widget.form.input(label: "City"),
+                  CafeKit.widget.form.input(
+                    label: "City",
+                    controller: state.cityController,
+                  ),
                   SizedBox(height: context.sizeHeight() * 0.035),
-                  CafeKit.widget.form.input(label: "Address"),
+                  CafeKit.widget.form.input(
+                    label: "Address",
+                    controller: state.addressController,
+                  ),
                 ],
               ),
               CafeKit.widget.card.simpleCard(
@@ -92,7 +113,8 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
                   ),
                   SizedBox(height: context.sizeHeight() * 0.035),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: context.sizeWidth() * 0.1),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: context.sizeWidth() * 0.1),
                     child: CafeKit.widget.button.formButton(
                       ButtonModel(label: "Submit", onTap: () {}),
                     ),
@@ -101,7 +123,8 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
               ),
               SizedBox(height: context.sizeHeight() * 0.1),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: context.sizeWidth() * 0.1),
+                padding:
+                    EdgeInsets.symmetric(horizontal: context.sizeWidth() * 0.1),
                 child: CafeKit.widget.button.formButton(
                   ButtonModel(label: "Log out", onTap: () {}),
                 ),
