@@ -25,12 +25,12 @@ jobs:
         run: flutter pub get
 
       - name: Create google-services.json file
-        run: cat ./android/app/google-services.json | base64
+        run: cat ./android/app/src/prod/google-services.json | base64
 
       - name: Putting data
         env:
           DATA: ${{ secrets.FIREBASE_CONFIG }}
-        run: echo $DATA > ./android/app/google-services.json
+        run: echo $DATA > ./android/app/src/prod/google-services.json
 
       - name: Flutter build apk
-        run: flutter build apk
+        run: flutter build apk --flavor prod lib/main_prod.dart
