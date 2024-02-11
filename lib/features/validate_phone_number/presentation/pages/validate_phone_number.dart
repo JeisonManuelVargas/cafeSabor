@@ -68,7 +68,7 @@ class ValidatePhoneNumber extends BasePage<ValidatePhoneNumberState, ValidatePho
                 fromAnimationModel: FromAnimationModel(
                   fromAnimation: FromAnimation.fromRight,
                   duration: const Duration(milliseconds: 1100),
-                  child: CafeKit.widget.button.formButton(
+                  child: state.isLoading ? const CircularProgressIndicator() :  CafeKit.widget.button.formButton(
                     ButtonModel(
                       label: "Continue",
                       onTap: () => bloc.saveUser(context),

@@ -51,6 +51,6 @@ Future<void> init() async {
     
     
     
-    ..registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance)
-    ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+    ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
+    ..registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
 }

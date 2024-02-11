@@ -1,7 +1,9 @@
 
-import 'package:cafe_sabor/core/model/user_model.dart';
+import 'package:cafe_sabor/config/get_credentials.dart';
+import 'package:cafe_sabor/core/model/credential_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cafe_sabor/core/model/user_model.dart';
 
 
 abstract class ValidatePhoneNumberDataSource {
@@ -42,6 +44,7 @@ class ValidatePhoneNumberDataSourceImpl implements ValidatePhoneNumberDataSource
     required UserModel userModel,
   }) async {
     db.collection(userCollection).doc().set(userModel.toJson());
+    Credentials().set(CredentialsModel(email: userModel.email, password: userModel.password));
     return userModel;
   }
 }

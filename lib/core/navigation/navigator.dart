@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cafe_sabor/core/model/credential_model.dart';
 import 'package:cafe_sabor/core/model/product_model.dart';
 import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:cafe_sabor/features/detail_product/presentation/pages/detail_product.dart';
@@ -57,7 +58,7 @@ class AppNavigator {
 
   static NavigatorState get state => navigatorKey.currentState!;
 
-  static Route<dynamic> generateRoute(RouteSettings settings) {
+  static Route<dynamic> generateRoute(RouteSettings settings, CredentialsModel credentials) {
     ProductModel productModel = ProductModel.init();
     UserModel userModel = UserModel.init();
 
@@ -114,11 +115,13 @@ class AppNavigator {
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
         );
-      default:
-        return _pageRoute(
-          page: const Onboard(),
-          settings: settings,
-        );
+      default: {
+        if (credentials.email.isNotEmpty) {
+          return _pageRoute(page: const Home(), settings: settings);
+        } else {
+          return _pageRoute(page: const Onboard(), settings: settings);
+        }
+      }
     }
   }
 
