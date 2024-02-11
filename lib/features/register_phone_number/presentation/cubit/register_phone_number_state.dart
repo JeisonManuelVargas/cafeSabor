@@ -1,20 +1,24 @@
 part of 'register_phone_number_cubit.dart';
 
 class RegisterPhoneNumberState {
-  final bool activeFirstTime;
+  final UserModel userModel;
+  final TextEditingController phone;
 
   const RegisterPhoneNumberState({
-    required this.activeFirstTime,
+    required this.userModel,
+    required this.phone,
   });
 
-  factory RegisterPhoneNumberState.init() => const RegisterPhoneNumberState(
-        activeFirstTime: false,
+  factory RegisterPhoneNumberState.init() => RegisterPhoneNumberState(
+        userModel: UserModel.init(),
+        phone: TextEditingController(),
       );
 
   RegisterPhoneNumberState copyWith({
-    bool? activeFirstTime,
+    UserModel? userModel,
   }) =>
       RegisterPhoneNumberState(
-        activeFirstTime: activeFirstTime ?? this.activeFirstTime,
+        phone: phone,
+        userModel: userModel ?? this.userModel,
       );
 }

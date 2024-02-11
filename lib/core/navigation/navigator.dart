@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cafe_sabor/core/model/product_model.dart';
+import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:cafe_sabor/features/detail_product/presentation/pages/detail_product.dart';
 import 'package:cafe_sabor/features/my_products/presentation/pages/my_products.dart';
 import 'package:cafe_sabor/features/profile/presentation/pages/profile.dart';
@@ -58,9 +59,12 @@ class AppNavigator {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     ProductModel productModel = ProductModel.init();
+    UserModel userModel = UserModel.init();
+
     final params = settings.arguments;
 
     if (params is ProductModel) productModel = params;
+    if (params is UserModel) userModel = params;
 
     switch (settings.name) {
       case _Page.home:
@@ -75,22 +79,22 @@ class AppNavigator {
         );
       case _Page.createAccount:
         return _pageRoute(
-          page: const RegisterCreateAccount(),
+          page: RegisterCreateAccount(userModel: userModel),
           settings: settings,
         );
       case _Page.registerPlaceResidence:
         return _pageRoute(
-          page: const RegisterPlaceResidence(),
+          page: RegisterPlaceResidence(userModel: userModel),
           settings: settings,
         );
       case _Page.registerPhoneNumber:
         return _pageRoute(
-          page: const RegisterPhoneNumber(),
+          page: RegisterPhoneNumber(userModel: userModel),
           settings: settings,
         );
       case _Page.validatePhoneNumber:
         return _pageRoute(
-          page: const ValidatePhoneNumber(),
+          page: ValidatePhoneNumber(userModel: userModel),
           settings: settings,
         );
       case _Page.profile:
@@ -140,7 +144,12 @@ class AppNavigator {
     Object? arguments,
     Function(dynamic)? callBack,
   }) =>
-      state.pushNamed(_Page.page(route)!, arguments: arguments,).then(
+      state
+          .pushNamed(
+            _Page.page(route)!,
+            arguments: arguments,
+          )
+          .then(
             (value) => callBack != null ? callBack(value) : {},
           );
 

@@ -1,20 +1,25 @@
 part of 'validate_phone_number_cubit.dart';
 
 class ValidatePhoneNumberState {
-  final bool activeFirstTime;
+  final bool isLoading;
+  final UserModel userModel;
 
   const ValidatePhoneNumberState({
-    required this.activeFirstTime,
+    required this.isLoading,
+    required this.userModel,
   });
 
-  factory ValidatePhoneNumberState.init() => const ValidatePhoneNumberState(
-        activeFirstTime: false,
+  factory ValidatePhoneNumberState.init() => ValidatePhoneNumberState(
+        isLoading: false,
+        userModel: UserModel.init(),
       );
 
   ValidatePhoneNumberState copyWith({
-    bool? activeFirstTime,
+    bool? isLoading,
+    UserModel? userModel,
   }) =>
       ValidatePhoneNumberState(
-        activeFirstTime: activeFirstTime ?? this.activeFirstTime,
+        userModel: userModel ?? this.userModel,
+        isLoading: isLoading ?? this.isLoading,
       );
 }

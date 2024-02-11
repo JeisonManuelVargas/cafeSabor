@@ -1,23 +1,47 @@
 
+import 'package:cafe_sabor/core/model/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 abstract class ValidatePhoneNumberDataSource {
-  /*Future<List<MovieModel>> getListMovies();*/
+  Future<String> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
+
+  Future<UserModel> createDataUser({
+    required UserModel userModel,
+  });
 }
 
 class ValidatePhoneNumberDataSourceImpl implements ValidatePhoneNumberDataSource {
-/*  final FirebaseFirestore db;
+  final FirebaseAuth auth;
+  final FirebaseFirestore db;
   final String userCollection = 'users';
 
-  ValidatePhoneNumberDataSourceImpl({required this.db});
+  ValidatePhoneNumberDataSourceImpl({
+    required this.db,
+    required this.auth,
+  });
 
   @override
-  Future<List<MovieModel>> getListMovies() async {
-    try {
-       final res = await AbstractApi().readData(urlSpecific: "movie/popular".stringToUri);
-       List data = res.result['results'];
-       final listMovie = data.map((e) => MovieModel.fromJson(e)).toList();
-      return listMovie;
-    } catch (e) {
-      throw ValidatePhoneNumberException(code: 'Error al cargar datos desde la API');
-    }
-  }*/
+  Future<String> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    final userCredential = await auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return userCredential.user!.uid;
+  }
+
+  @override
+  Future<UserModel> createDataUser({
+    required UserModel userModel,
+  }) async {
+    db.collection(userCollection).doc().set(userModel.toJson());
+    return userModel;
+  }
 }

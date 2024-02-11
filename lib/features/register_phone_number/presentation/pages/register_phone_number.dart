@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
@@ -8,11 +9,13 @@ import 'package:cafe_sabor/features/register_phone_number/presentation/cubit/reg
 
 class RegisterPhoneNumber
     extends BasePage<RegisterPhoneNumberState, RegisterPhoneNumberCubit> {
-  const RegisterPhoneNumber({super.key});
+  final UserModel userModel;
+
+  const RegisterPhoneNumber({super.key, required this.userModel});
 
   @override
   RegisterPhoneNumberCubit createBloc(BuildContext context) =>
-      sl<RegisterPhoneNumberCubit>()..init(context);
+      sl<RegisterPhoneNumberCubit>()..init(context, userModel);
 
   @override
   Widget buildPage(BuildContext context, state, bloc) {
@@ -57,7 +60,10 @@ class RegisterPhoneNumber
                     fromAnimationModel: FromAnimationModel(
                       fromAnimation: FromAnimation.fromRight,
                       duration: const Duration(milliseconds: 900),
-                      child: CafeKit.widget.form.input(label: "Phone number"),
+                      child: CafeKit.widget.form.input(
+                        label: "Phone number",
+                        controller: state.phone,
+                      ),
                     ),
                   ),
                   SizedBox(height: context.sizeHeight() * 0.03),

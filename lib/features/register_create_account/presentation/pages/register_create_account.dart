@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
@@ -6,12 +7,16 @@ import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
 import 'package:cafe_sabor/features/register_create_account/presentation/cubit/register_create_account_cubit.dart';
 
-class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, RegisterCreateAccountCubit> {
-  const RegisterCreateAccount({super.key});
+class RegisterCreateAccount
+    extends BasePage<RegisterCreateAccountState, RegisterCreateAccountCubit> {
+
+  final UserModel userModel;
+
+  const RegisterCreateAccount({super.key, required this.userModel});
 
   @override
   RegisterCreateAccountCubit createBloc(BuildContext context) =>
-      sl<RegisterCreateAccountCubit>()..init(context);
+      sl<RegisterCreateAccountCubit>()..init(context, userModel);
 
   /*390 * 844*/
   @override
@@ -55,7 +60,10 @@ class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, Registe
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
                     duration: const Duration(milliseconds: 900),
-                    child: CafeKit.widget.form.input(label: "Name"),
+                    child: CafeKit.widget.form.input(
+                      label: "Name",
+                      controller: state.nameController,
+                    ),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
@@ -63,7 +71,10 @@ class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, Registe
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
                     duration: const Duration(milliseconds: 1000),
-                    child: CafeKit.widget.form.input(label: "Last name"),
+                    child: CafeKit.widget.form.input(
+                      label: "Last name",
+                      controller: state.lastNameController,
+                    ),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
@@ -71,7 +82,10 @@ class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, Registe
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
                     duration: const Duration(milliseconds: 1100),
-                    child: CafeKit.widget.form.input(label: "Email"),
+                    child: CafeKit.widget.form.input(
+                      label: "Email",
+                      controller: state.emailController,
+                    ),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.03),
@@ -79,7 +93,10 @@ class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, Registe
                   fromAnimationModel: FromAnimationModel(
                     fromAnimation: FromAnimation.fromRight,
                     duration: const Duration(milliseconds: 1200),
-                    child: CafeKit.widget.form.input(label: "Password"),
+                    child: CafeKit.widget.form.input(
+                      label: "Password",
+                      controller: state.passwordController,
+                    ),
                   ),
                 ),
                 SizedBox(height: context.sizeHeight() * 0.05),
@@ -88,7 +105,9 @@ class RegisterCreateAccount extends BasePage<RegisterCreateAccountState, Registe
                     fromAnimation: FromAnimation.fromRight,
                     duration: const Duration(milliseconds: 1300),
                     child: CafeKit.widget.button.formButton(
-                      ButtonModel(label: "Create account", onTap: bloc.goToRegisterPlaceResidence),
+                      ButtonModel(
+                          label: "Create account",
+                          onTap: bloc.goToRegisterPlaceResidence),
                     ),
                   ),
                 ),

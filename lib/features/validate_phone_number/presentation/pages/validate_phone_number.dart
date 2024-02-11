@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
@@ -6,13 +7,15 @@ import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
 import 'package:cafe_sabor/features/validate_phone_number/presentation/cubit/validate_phone_number_cubit.dart';
 
-class ValidatePhoneNumber
-    extends BasePage<ValidatePhoneNumberState, ValidatePhoneNumberCubit> {
-  const ValidatePhoneNumber({super.key});
+class ValidatePhoneNumber extends BasePage<ValidatePhoneNumberState, ValidatePhoneNumberCubit> {
+
+  final UserModel userModel;
+
+  const ValidatePhoneNumber({super.key, required this.userModel});
 
   @override
   ValidatePhoneNumberCubit createBloc(BuildContext context) =>
-      sl<ValidatePhoneNumberCubit>()..init(context);
+      sl<ValidatePhoneNumberCubit>()..init(context, userModel);
 
   @override
   Widget buildPage(BuildContext context, state, bloc) {
@@ -68,7 +71,7 @@ class ValidatePhoneNumber
                   child: CafeKit.widget.button.formButton(
                     ButtonModel(
                       label: "Continue",
-                      onTap: bloc.goToHome,
+                      onTap: () => bloc.saveUser(context),
                     ),
                   ),
                 ),
