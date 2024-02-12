@@ -24,6 +24,9 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
+      - name: create folder
+        run: mkdir ./android/app/src/prod
+
       - name: Create google-services.json file
         run: cat ./android/app/src/prod/google-services.json | base64
 
