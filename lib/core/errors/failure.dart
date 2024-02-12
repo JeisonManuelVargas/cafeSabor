@@ -8,3 +8,10 @@ class ValidatePhoneNumberFailure implements Failure {
 
   ValidatePhoneNumberFailure({this.message = ""});
 }
+
+class HomeFailure implements Failure {
+  @override
+  String message;
+
+  HomeFailure({this.message = ""});
+}

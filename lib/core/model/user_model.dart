@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   String name;
   String email;
@@ -6,10 +8,12 @@ class UserModel {
   String password;
   String lastName;
   String language;
-  dynamic dateCreate;
+  DateTime dateCreate;
+  DocumentReference? id;
   List<AddressModel> address;
 
   UserModel({
+    this.id,
     required this.name,
     required this.image,
     required this.email,
@@ -21,7 +25,8 @@ class UserModel {
     required this.dateCreate,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromJson(json, DocumentReference id) => UserModel(
+    id: id,
     name: json["name"],
     email: json["email"],
     image: json["image"],
@@ -29,7 +34,7 @@ class UserModel {
     password: json["password"],
     language: json["language"],
     lastName: json["last_name"],
-    dateCreate: json["dateCreate"],
+    dateCreate: json["dateCreate"].toDate(),
     address: List<AddressModel>.from(json["address"].map((x) => AddressModel.fromJson(x))),
   );
 
@@ -105,7 +110,7 @@ class AddressModel {
     address: json["address"],
     country: json["country"],
     position: json["position"],
-    dateCreate: json["dateCreate"],
+    dateCreate: json["dateCreate"].toDate(),
   );
 
   Map<String, dynamic> toJson() => {

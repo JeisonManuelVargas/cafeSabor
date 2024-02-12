@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:cafe_sabor/config/get_credentials.dart';
+import 'package:cafe_sabor/config/credentials.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/config/my_app.dart';
 import 'package:cafe_sabor/injection_container.dart' as di;

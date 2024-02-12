@@ -51,5 +51,5 @@ class ValidatePhoneNumberCubit extends Cubit<ValidatePhoneNumberState> {
     emit(state.copyWith(isLoading: false));
   }
 
-  _goToHome(UserModel user) => AppNavigator.push(Routes.HOME);
+  _goToHome(UserModel user) => AppNavigator.pushNamedAndRemoveUntil(Routes.HOME);
 }

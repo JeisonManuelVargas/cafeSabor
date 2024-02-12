@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:cafe_sabor/config/credentials.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
 import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,10 @@ class CustomDrawer extends StatelessWidget {
                   title: "LOGOUT",
                   context: context,
                   icon: Icons.close,
-                  onTap: () {},
+                  onTap: () {
+                    Credentials().delete();
+                    AppNavigator.pushNamedAndRemoveUntil(Routes.ONBOARD);
+                  },
                   customIcon: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,

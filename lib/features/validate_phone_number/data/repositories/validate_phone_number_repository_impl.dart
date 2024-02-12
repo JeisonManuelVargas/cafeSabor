@@ -1,4 +1,4 @@
-import 'package:cafe_sabor/core/extension/streing_extension.dart';
+import 'package:cafe_sabor/core/extension/string_extension.dart';
 import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
