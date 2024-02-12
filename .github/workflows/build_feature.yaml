@@ -27,7 +27,7 @@ jobs:
       - name: create folder
         run: mkdir ./android/app/src/prod
 
-      - name: Create google-services.json file
+      - name: Create google-services.json file
         run: cat ./android/app/src/prod/google-services.json | base64
 
       - name: Putting data
