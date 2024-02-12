@@ -9,4 +9,6 @@ extension ContextExtension on String {
         return "Error no controlado";
     }
   }
+
+  getFirstItem() => split(" ").first;
 }

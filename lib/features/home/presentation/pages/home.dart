@@ -1,8 +1,10 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:cafe_sabor/core/extension/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
 import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
+import 'package:cafe_sabor/core/util/custom_loading_widget.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
 import 'package:cafe_sabor/features/home/presentation/cubit/home_cubit.dart';
 import 'package:cafe_sabor/features/home/presentation/widget/custom_drawer.dart';
@@ -46,9 +48,16 @@ class Home extends BasePage<HomeState, HomeCubit> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              "JEISON IT'S\nCOFFEE TIME".toUpperCase(),
-                              style: CafeKit.util.cafeTextStyle.titleL,
+                            Expanded(
+                              child: CustomLoadingWidget(
+                                isLoading: state.isLoading,
+                                child: Text(
+                                  "${state.user.name.getFirstItem()} IT'S\nCOFFEE TIME"
+                                      .toUpperCase(),
+                                  style: CafeKit.util.cafeTextStyle.titleL,
+                                  maxLines: 2,
+                                ),
+                              ),
                             ),
                             Builder(builder: (context) {
                               return InkWell(

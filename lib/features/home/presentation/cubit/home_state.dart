@@ -1,18 +1,24 @@
 part of 'home_cubit.dart';
 
 class HomeState {
+  final UserModel user;
+  final bool isLoading;
   final int productIndex;
   final PageController controller;
   final List<ProductModel> products;
 
   const HomeState({
+    required this.user,
     required this.products,
+    required this.isLoading,
     required this.controller,
     required this.productIndex,
   });
 
   factory HomeState.init() => HomeState(
         productIndex: 0,
+        isLoading: false,
+        user: UserModel.init(),
         controller: PageController(),
         products: [
           ProductModel(
@@ -79,12 +85,16 @@ class HomeState {
       );
 
   HomeState copyWith({
+    bool? isLoading,
+    UserModel? user,
     int? productIndex,
     List<ProductModel>? products,
   }) =>
       HomeState(
         controller: controller,
+        user: user ?? this.user,
         products: products ?? this.products,
+        isLoading: isLoading ?? this.isLoading,
         productIndex: productIndex ?? this.productIndex,
       );
 }
