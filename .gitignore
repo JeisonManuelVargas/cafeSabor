@@ -33,6 +33,10 @@ pubspec.lock
 
 # google services
 android/app/google-services.json
+android/app/src/prod/google-services.json
+android/app/src/dev/google-services.json
+ios/GoogleService-Info-Prod.plist
+ios/GoogleService-Info-Dev.plist
 
 # Web related
 lib/generated_plugin_registrant.dart
@@ -41,3 +45,5 @@ lib/generated_plugin_registrant.dart
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 keystore_name.jks
+
+
