@@ -1,6 +1,7 @@
 part of 'profile_cubit.dart';
 
 class ProfileState {
+  final UserModel user;
   final int productIndex;
   final PageController controller;
   final List<ProductModel> products;
@@ -14,6 +15,7 @@ class ProfileState {
   final TextEditingController lastNameController;
 
   const ProfileState({
+    required this.user,
     required this.products,
     required this.controller,
     required this.productIndex,
@@ -26,25 +28,32 @@ class ProfileState {
     required this.lastNameController,
   });
 
-  factory ProfileState.init() => ProfileState(
-        products: [],
-        productIndex: 0,
-        controller: PageController(),
-        cityController: TextEditingController(),
-        nameController: TextEditingController(),
-        emailController: TextEditingController(),
-        stateController: TextEditingController(),
-        addressController: TextEditingController(),
-        countryController: TextEditingController(),
-        lastNameController: TextEditingController(),
-      );
+  factory ProfileState.init(UserModel user) {
+    AddressModel addressModel = user.address.first;
+
+    return ProfileState(
+      user: user,
+      products: [],
+      productIndex: 0,
+      controller: PageController(),
+      nameController: TextEditingController(text: user.name),
+      emailController: TextEditingController(text: user.email),
+      cityController: TextEditingController(text: addressModel.city),
+      lastNameController: TextEditingController(text: user.lastName),
+      stateController: TextEditingController(text: addressModel.state),
+      addressController: TextEditingController(text: addressModel.address),
+      countryController: TextEditingController(text: addressModel.country),
+    );
+  }
 
   ProfileState copyWith({
+    UserModel? user,
     int? productIndex,
     List<ProductModel>? products,
   }) =>
       ProfileState(
         controller: controller,
+        user: user ?? this.user,
         cityController: cityController,
         nameController: nameController,
         stateController: stateController,

@@ -7,6 +7,7 @@ import 'package:cafe_sabor/features/home/domain/repositories/home_auth_repositor
 import 'package:cafe_sabor/features/home/domain/usecases/get_user_use_case.dart';
 import 'package:cafe_sabor/features/my_products/presentation/cubit/my_products_cubit.dart';
 import 'package:cafe_sabor/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:cafe_sabor/features/recipes/presentation/cubit/recipes_cubit.dart';
 import 'package:cafe_sabor/features/validate_phone_number/data/data_sources/validate_phone_number_data_source.dart';
 import 'package:cafe_sabor/features/validate_phone_number/data/repositories/validate_phone_number_repository_impl.dart';
 import 'package:cafe_sabor/features/validate_phone_number/domain/repositories/validate_phone_number_repository.dart';
@@ -30,6 +31,7 @@ Future<void> init() async {
     //cubit
     ..registerFactory<HomeCubit>(() => HomeCubit(getUserUseCase: sl()))
     ..registerFactory<ProfileCubit>(() =>  ProfileCubit())
+    ..registerFactory<RecipesCubit>(() =>  RecipesCubit())
     ..registerFactory<OnboardCubit>(() => OnboardCubit())
     ..registerFactory<MyProductsCubit>(() => MyProductsCubit())
     ..registerFactory<DetailProductCubit>(() => DetailProductCubit())

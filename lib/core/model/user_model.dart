@@ -43,7 +43,7 @@ class UserModel {
     image: "",
     email: "",
     phone: "",
-    address: [],
+    address: [AddressModel.init()],
     password: "",
     lastName: "",
     language: "en",
@@ -111,6 +111,16 @@ class AddressModel {
     country: json["country"],
     position: json["position"],
     dateCreate: json["dateCreate"].toDate(),
+  );
+
+
+  factory AddressModel.init() => AddressModel(
+    city: "",
+    state: "",
+    address: "",
+    country: "",
+    position: "",
+    dateCreate: DateTime.now(),
   );
 
   Map<String, dynamic> toJson() => {

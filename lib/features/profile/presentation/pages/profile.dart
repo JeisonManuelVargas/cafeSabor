@@ -1,24 +1,30 @@
 // ignore_for_file: depend_on_referenced_packages
-import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
+import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
+import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
 import 'package:cafe_sabor/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:cafe_sabor/features/home/presentation/widget/custom_drawer.dart';
 
 class Profile extends BasePage<ProfileState, ProfileCubit> {
-  const Profile({super.key});
+  final UserModel userModel;
+
+  const Profile({super.key, required this.userModel});
 
   @override
-  ProfileCubit createBloc(BuildContext context) =>
-      sl<ProfileCubit>()..init(context);
+  ProfileCubit createBloc(BuildContext context) => sl<ProfileCubit>()
+    ..init(
+      context,
+      userModel,
+    );
 
   @override
   Widget buildPage(BuildContext context, state, bloc) {
     return Scaffold(
-      endDrawer: const CustomDrawer(),
+      endDrawer: CustomDrawer(user: state.user),
       body: SizedBox(
         width: context.sizeWidth(),
         height: context.sizeHeight(),

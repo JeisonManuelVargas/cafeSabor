@@ -20,7 +20,7 @@ class Home extends BasePage<HomeState, HomeCubit> {
   @override
   Widget buildPage(BuildContext context, state, bloc) {
     return Scaffold(
-      endDrawer: const CustomDrawer(),
+      endDrawer: CustomDrawer(user: state.user,),
       body: SizedBox(
         width: context.sizeWidth(),
         height: context.sizeHeight(),
