@@ -1,6 +1,7 @@
 part of 'profile_cubit.dart';
 
 class ProfileState {
+  final File image;
   final UserModel user;
   final int productIndex;
   final PageController controller;
@@ -16,6 +17,7 @@ class ProfileState {
 
   const ProfileState({
     required this.user,
+    required this.image,
     required this.products,
     required this.controller,
     required this.productIndex,
@@ -34,6 +36,7 @@ class ProfileState {
     return ProfileState(
       user: user,
       products: [],
+      image: File(""),
       productIndex: 0,
       controller: PageController(),
       nameController: TextEditingController(text: user.name),
@@ -47,6 +50,7 @@ class ProfileState {
   }
 
   ProfileState copyWith({
+    File? image,
     UserModel? user,
     int? productIndex,
     List<ProductModel>? products,
@@ -54,6 +58,7 @@ class ProfileState {
       ProfileState(
         controller: controller,
         user: user ?? this.user,
+        image: image ?? this.image,
         cityController: cityController,
         nameController: nameController,
         stateController: stateController,

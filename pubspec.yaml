@@ -24,13 +24,15 @@ dev_dependencies:
   get_it: ^7.6.7
   shimmer: ^3.0.0
   flutter_bloc: ^8.1.4
+  image_picker: ^1.0.7
   flutter_lints: ^3.0.1
   firebase_auth: ^4.16.0
   firebase_core: ^2.25.4
   cloud_firestore: ^4.15.5
+  sliding_up_panel: ^2.0.0+1
   shared_preferences: ^2.2.2
   flutter_native_splash: ^2.3.6
-  tiktok_transitions_jm: ^0.0.2
+  tiktok_transitions_jm: ^0.0.4
   image_picker_loading_jm: ^0.0.9
   cafe_sabor_ui_kit:
     git:

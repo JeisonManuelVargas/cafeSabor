@@ -6,6 +6,7 @@ import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
+import 'package:cafe_sabor/features/profile/presentation/widgets/user_image.dart';
 import 'package:cafe_sabor/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:cafe_sabor/features/home/presentation/widget/custom_drawer.dart';
 
@@ -37,27 +38,41 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
               SizedBox(height: context.sizeHeight() * 0.1),
               Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: context.sizeHeight() * 0.03),
+                  horizontal: context.sizeHeight() * 0.03,
+                ),
                 child: CafeKit.widget.button.goBackButton(
                   onTap: () => AppNavigator.pop(),
                 ),
               ),
-              SizedBox(height: context.sizeHeight() * 0.05),
-              Text(
-                "JEISON",
-                style: CafeKit.util.cafeTextStyle.titleXL,
-              ),
-              SizedBox(height: context.sizeHeight() * 0.05),
-              CafeKit.widget.card.simpleCard(
-                body: [
-                  Text(
-                    "Jeison Manuel Vargas Vargas",
-                    style: CafeKit.util.cafeTextStyle.text,
+              SizedBox(height: context.sizeHeight() * 0.03),
+              Stack(
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        state.user.name.toUpperCase(),
+                        style: CafeKit.util.cafeTextStyle.titleXL,
+                      ),
+                      CafeKit.widget.card.simpleCard(
+                        body: [
+                          Text(
+                            "${state.user.name} ${state.user.lastName}",
+                            style: CafeKit.util.cafeTextStyle.text,
+                          ),
+                          SizedBox(height: context.sizeHeight() * 0.01),
+                          Text(
+                            "${state.user.address.first.city}/${state.user.address.first.state}",
+                            style:
+                                CafeKit.util.cafeTextStyle.descriptionProduct,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  SizedBox(height: context.sizeHeight() * 0.01),
-                  Text(
-                    "Pitalito Huila",
-                    style: CafeKit.util.cafeTextStyle.descriptionProduct,
+                  UserImage(
+                    chooseImage: () {},
+                    isAsset: state.image.path.isNotEmpty,
+                    image: state.user.image.isNotEmpty ? state.user.image : state.image.path,
                   ),
                 ],
               ),
@@ -109,30 +124,16 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
                   ),
                 ],
               ),
-              CafeKit.widget.card.simpleCard(
-                alignment: CrossAxisAlignment.start,
-                paddingTop: context.sizeHeight() * 0.05,
-                body: [
-                  Text(
-                    "Select category",
-                    style: CafeKit.util.cafeTextStyle.titleBorna,
-                  ),
-                  SizedBox(height: context.sizeHeight() * 0.035),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: context.sizeWidth() * 0.1),
-                    child: CafeKit.widget.button.formButton(
-                      ButtonModel(label: "Submit", onTap: () {}),
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(height: context.sizeHeight() * 0.1),
               Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: context.sizeWidth() * 0.1),
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.sizeWidth() * 0.1,
+                ),
                 child: CafeKit.widget.button.formButton(
-                  ButtonModel(label: "Log out", onTap: () {}),
+                  ButtonModel(
+                    label: "Log out",
+                    onTap: () {},
+                  ),
                 ),
               ),
               SizedBox(height: context.sizeHeight() * 0.1),

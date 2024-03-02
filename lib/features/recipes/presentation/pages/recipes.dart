@@ -27,7 +27,7 @@ class Recipes extends BasePage<RecipesState, RecipesCubit> {
         loadingBuilder: (context) => const Center(
           child: CircularProgressIndicator(),
         ),
-        urlList: state.listUrl,
+        videoListController: state.videoController,
         builder: (context, body, tikTokManager) {
           return Stack(
             children: [

@@ -11,7 +11,9 @@ part 'recipes_state.dart';
 class RecipesCubit extends Cubit<RecipesState> {
   RecipesCubit() : super(RecipesState.init());
 
-  init(BuildContext context) {}
+  init(BuildContext context) {
+    state.videoController.urlList = state.listUrl;
+  }
 
   onTapVideo(TikTokModel tikTokManager) {
     if (tikTokManager.controller!.value.isPlaying) {

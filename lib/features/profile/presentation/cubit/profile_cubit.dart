@@ -1,11 +1,13 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:cafe_sabor/core/model/product_model.dart';
-import 'package:cafe_sabor/core/model/user_model.dart';
-import 'package:cafe_sabor/core/navigation/navigator.dart';
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:cafe_sabor/core/model/user_model.dart';
+import 'package:cafe_sabor/core/model/product_model.dart';
+import 'package:cafe_sabor/core/navigation/navigator.dart';
 
 part 'profile_state.dart';
 
@@ -23,4 +25,22 @@ class ProfileCubit extends Cubit<ProfileState> {
         Routes.DETAIL_PRODUCT,
         arguments: productModel,
       );
+
+  Future getImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) emit(state.copyWith(image: File(pickedFile.path)));
+  }
 }
+
+
+
+
+
+
+
+
+
+
+

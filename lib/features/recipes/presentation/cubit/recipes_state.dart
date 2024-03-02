@@ -4,11 +4,13 @@ class RecipesState {
   final UserModel user;
   final bool isLoading;
   final List<String> listUrl;
+  final VideoListController videoController;
 
   const RecipesState({
     required this.user,
     required this.listUrl,
     required this.isLoading,
+    required this.videoController,
   });
 
   factory RecipesState.init() => RecipesState(
@@ -21,6 +23,7 @@ class RecipesState {
           "https://firebasestorage.googleapis.com/v0/b/cafesabor-3ac29.appspot.com/o/videos_cafe%2FVASITO%20DE%20CAFE%CC%81%20COMESTIBLE_%20Hecho%20de%20galletitas%20y%20chocolate%20%23shorts.mp4?alt=media&token=5bfbecde-d309-4eee-8ad8-0a1e428fbdf6",
           "https://firebasestorage.googleapis.com/v0/b/cafesabor-3ac29.appspot.com/o/videos_cafe%2F%F0%9F%98%8D%20Co%CC%81cteles%20con%20CAFE%CC%81%20%E2%98%95%EF%B8%8F%20%23shorts%20%C2%BFy%20tu%CC%81%20favorito_.mp4?alt=media&token=aab8a488-41ff-47b4-b68e-be6ca1afac98",
         ],
+        videoController: VideoListController(),
         isLoading: false,
         user: UserModel.init(),
       );
@@ -32,6 +35,7 @@ class RecipesState {
   }) =>
       RecipesState(
         user: user ?? this.user,
+        videoController: videoController,
         listUrl: listUrl ?? this.listUrl,
         isLoading: isLoading ?? this.isLoading,
       );
