@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
@@ -34,7 +36,7 @@ class UserImage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                         image: DecorationImage(
                           image: provider,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -48,11 +50,22 @@ class UserImage extends StatelessWidget {
                     color: CafeKit.util.color.green,
                   ),
                   child: Center(
-                    child: Image.asset(
-                      image.isNotEmpty ? image : "assets/icons/user.png",
-                      alignment: Alignment.center,
-                      height: context.sizeHeight() * 0.1,
-                    ),
+                    child: image.isNotEmpty
+                        ? Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: FileImage(File(image)),
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          )
+                        : Image.asset(
+                            "assets/icons/user.png",
+                            fit: BoxFit.cover,
+                            alignment: Alignment.center,
+                            height: context.sizeHeight() * 0.1,
+                          ),
                   ),
                 ),
           Container(

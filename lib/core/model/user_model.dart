@@ -46,7 +46,7 @@ class UserModel {
     address: [AddressModel.init()],
     password: "",
     lastName: "",
-    language: "en",
+    language: "",
     dateCreate: DateTime.now(),
   );
 
@@ -60,6 +60,15 @@ class UserModel {
     "last_name": lastName,
     "dateCreate": dateCreate,
     "address": List<dynamic>.from(address.map((x) => x.toJson())),
+  };
+
+  Map<String, dynamic> toJsonUpdate() => {
+    "name": name,
+    "email": email,
+    "image": image,
+    "phone": phone,
+    "language": language,
+    "last_name": lastName,
   };
 
 
