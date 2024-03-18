@@ -7,6 +7,7 @@ class ProfileState {
   final int productIndex;
   final PageController controller;
   final List<ProductModel> products;
+  final GlobalKey<FormState> formKey;
   final PanelController panelController;
   final PhoneController phoneController;
   final TextEditingController nameController;
@@ -20,6 +21,7 @@ class ProfileState {
   const ProfileState({
     required this.user,
     required this.image,
+    required this.formKey,
     required this.products,
     required this.isLoading,
     required this.controller,
@@ -45,10 +47,16 @@ class ProfileState {
       productIndex: 0,
       isLoading: false,
       controller: PageController(),
+      formKey: GlobalKey<FormState>(),
       panelController: PanelController(),
       nameController: TextEditingController(text: user.name),
       emailController: TextEditingController(text: user.email),
-      phoneController: PhoneController(initialValue: PhoneNumber(isoCode: IsoCode.CO, nsn: user.phone)),
+      phoneController: PhoneController(
+        initialValue: PhoneNumber(
+          isoCode: IsoCode.CO,
+          nsn: user.phone,
+        ),
+      ),
       cityController: TextEditingController(text: addressModel.city),
       lastNameController: TextEditingController(text: user.lastName),
       stateController: TextEditingController(text: addressModel.state),
@@ -65,6 +73,7 @@ class ProfileState {
     List<ProductModel>? products,
   }) =>
       ProfileState(
+        formKey: formKey,
         controller: controller,
         user: user ?? this.user,
         image: image ?? this.image,

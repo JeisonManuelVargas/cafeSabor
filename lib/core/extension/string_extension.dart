@@ -11,4 +11,9 @@ extension ContextExtension on String {
   }
 
   getFirstItem() => split(" ").first;
+
+  bool validateEmail() {
+    RegExp regExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return regExp.hasMatch(this);
+  }
 }

@@ -13,6 +13,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:cafe_sabor/core/model/product_model.dart';
 import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:cafe_sabor/core/util/custom_snack_bar.dart';
+import 'package:cafe_sabor/core/extension/string_extension.dart';
 import 'package:cafe_sabor/features/profile/domain/usecases/submit_use_case.dart';
 import 'package:cafe_sabor/features/profile/domain/usecases/save_image_use_case.dart';
 
@@ -57,6 +58,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   submit(context) async {
+    if(!state.formKey.currentState!.validate()) return;
     emit(state.copyWith(isLoading: true));
     final result = await _submitUseCase(_generateUserModel());
     result.fold(
@@ -96,7 +98,18 @@ class ProfileCubit extends Cubit<ProfileState> {
         lastName: state.lastNameController.text,
       );
 
-  /*ValidatePhone()*/
+  String? validatorName(String? text){
+    String newText = text??"";
+    if(newText.isEmpty) return "can't be empty";
+    return null;
+  }
+
+  String? validatorEmail(String? text){
+    String newText = text??"";
+    if(newText.isEmpty) return "can't be empty";
+    if(!newText.validateEmail()) return "incorrect format";
+    return null;
+  }
 
   @override
   Future<void> close() {
