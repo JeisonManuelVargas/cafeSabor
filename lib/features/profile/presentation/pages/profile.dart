@@ -172,8 +172,8 @@ class Profile extends BasePage<ProfileState, ProfileCubit> {
           ),
         ),
         panel: ImagePanel(
-          onTapCamera: bloc.getImage,
-          onTapGallery: () => bloc.getImage(isCamera: false),
+          onTapCamera:() => bloc.getImage(context: context),
+          onTapGallery: () => bloc.getImage(context: context ,isCamera: false),
         ),
         controller: state.panelController,
       ),

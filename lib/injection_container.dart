@@ -1,5 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:cafe_sabor/features/profile/domain/usecases/save_url_image_use_case.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cafe_sabor/features/detail_product/presentation/cubit/detail_product_cubit.dart';
 import 'package:cafe_sabor/features/home/data/data_sources/home_data_source.dart';
 import 'package:cafe_sabor/features/home/data/repositories/home_repository_impl.dart';
@@ -36,7 +38,7 @@ Future<void> init() async {
     //cubit
     ..registerFactory<HomeCubit>(() => HomeCubit(getUserUseCase: sl()))
     ..registerFactory<ProfileCubit>(
-      () => ProfileCubit(saveImageUseCase: sl(), submitUseCase: sl()),
+      () => ProfileCubit(saveImageUseCase: sl(), submitUseCase: sl(), saveUrlImageUseCase: sl()),
     )
     ..registerFactory<RecipesCubit>(() =>  RecipesCubit())
     ..registerFactory<OnboardCubit>(() => OnboardCubit())
@@ -50,6 +52,9 @@ Future<void> init() async {
     //user Case
     ..registerFactory<SaveImageUseCase>(
       () => SaveImageUseCase(profileRepository: sl()),
+    )
+    ..registerFactory<SaveUrlImageUseCase>(
+      () => SaveUrlImageUseCase(profileRepository: sl()),
     )
     ..registerFactory<SubmitUseCase>(
       () => SubmitUseCase(profileRepository: sl()),
@@ -75,12 +80,13 @@ Future<void> init() async {
       () => HomeRepositoryImpl(homeDataSource: sl()),
     )
     //Dara source
-    ..registerFactory<ProfileDataSource>(() => ProfileDataSourceImpl(db: sl()))
+    ..registerFactory<ProfileDataSource>(() => ProfileDataSourceImpl(db: sl(), storage: sl()))
     ..registerFactory<HomeDataSource>(() => HomeDataSourceImpl(db: sl()))
     ..registerFactory<ValidatePhoneNumberDataSource>(() => ValidatePhoneNumberDataSourceImpl(db: sl(), auth: sl()))
 
 
 
     ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
+    ..registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance)
     ..registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
 }

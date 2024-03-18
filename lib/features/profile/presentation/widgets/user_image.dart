@@ -33,11 +33,9 @@ class UserImage extends StatelessWidget {
                       width: context.sizeWidth() * 0.3,
                       height: context.sizeHeight() * 0.3,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        image: DecorationImage(
-                          image: provider,
-                          fit: BoxFit.contain,
-                        ),
+                        shape: BoxShape.circle,
+                        color: CafeKit.util.color.green,
+                        image: DecorationImage(image: provider, fit: BoxFit.contain),
                       ),
                     ),
                   ),

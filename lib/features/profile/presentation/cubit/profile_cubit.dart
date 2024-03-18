@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:io';
+import 'package:cafe_sabor/features/profile/domain/usecases/save_url_image_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,11 +23,14 @@ part 'profile_state.dart';
 class ProfileCubit extends Cubit<ProfileState> {
   final SubmitUseCase _submitUseCase;
   final SaveImageUseCase _saveImageUseCase;
+  final SaveUrlImageUseCase _saveUrlImageUseCase;
 
   ProfileCubit({
     required SubmitUseCase submitUseCase,
     required SaveImageUseCase saveImageUseCase,
+    required SaveUrlImageUseCase saveUrlImageUseCase,
   })  : _submitUseCase = submitUseCase,
+        _saveUrlImageUseCase = saveUrlImageUseCase,
         _saveImageUseCase = saveImageUseCase,
         super(ProfileState.init(UserModel.init()));
 
@@ -42,14 +46,17 @@ class ProfileCubit extends Cubit<ProfileState> {
         arguments: productModel,
       );
 
-  Future getImage({bool isCamera = true}) async {
+  Future getImage({required BuildContext context, bool isCamera = true}) async {
     state.panelController.close();
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(
       source: isCamera ? ImageSource.camera : ImageSource.gallery,
     );
 
-    if (pickedFile != null) emit(state.copyWith(image: File(pickedFile.path)));
+    if (pickedFile != null) {
+      emit(state.copyWith(image: File(pickedFile.path)));
+      saveImageUseCase(context);
+    }
   }
 
   void logOut() {
@@ -58,7 +65,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   submit(context) async {
-    if(!state.formKey.currentState!.validate()) return;
+    if (!state.formKey.currentState!.validate()) return;
     emit(state.copyWith(isLoading: true));
     final result = await _submitUseCase(_generateUserModel());
     result.fold(
@@ -72,7 +79,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(state.copyWith(isLoading: false));
   }
 
-  saveImageUseCase(context) async {
+  saveImageUseCase(BuildContext context) async {
     emit(state.copyWith(isLoading: true));
     final result = await _saveImageUseCase(state.image);
     result.fold(
@@ -80,6 +87,20 @@ class ProfileCubit extends Cubit<ProfileState> {
       (String r) {
         final user = state.user.copyWith(image: r);
         emit(state.copyWith(user: user));
+        _saveUrlImage(context);
+      },
+    );
+    emit(state.copyWith(isLoading: false));
+  }
+
+  _saveUrlImage(context) async {
+    emit(state.copyWith(isLoading: true));
+    final result = await _saveUrlImageUseCase(state.user);
+    result.fold(
+      (Failure l) => customSnackBar(context, content: l.message),
+      (bool r) {
+        customSnackBar(context,
+            content: "photo modified correctly", isSuccess: true);
       },
     );
     emit(state.copyWith(isLoading: false));
@@ -98,16 +119,16 @@ class ProfileCubit extends Cubit<ProfileState> {
         lastName: state.lastNameController.text,
       );
 
-  String? validatorName(String? text){
-    String newText = text??"";
-    if(newText.isEmpty) return "can't be empty";
+  String? validatorName(String? text) {
+    String newText = text ?? "";
+    if (newText.isEmpty) return "can't be empty";
     return null;
   }
 
-  String? validatorEmail(String? text){
-    String newText = text??"";
-    if(newText.isEmpty) return "can't be empty";
-    if(!newText.validateEmail()) return "incorrect format";
+  String? validatorEmail(String? text) {
+    String newText = text ?? "";
+    if (newText.isEmpty) return "can't be empty";
+    if (!newText.validateEmail()) return "incorrect format";
     return null;
   }
 

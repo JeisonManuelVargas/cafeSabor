@@ -31,4 +31,14 @@ class ProfileRepositoryImpl implements ProfileRepository {
       return Left(HomeFailure(message: e.code));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> saveUrlImage(UserModel user) async {
+    try {
+      final result = await profileDataSource.saveUrlImage(user);
+      return Right(result);
+    } on FirebaseAuthException catch (e) {
+      return Left(HomeFailure(message: e.code));
+    }
+  }
 }
