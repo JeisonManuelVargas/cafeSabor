@@ -1,7 +1,4 @@
 // ignore_for_file: depend_on_referenced_packages
-import 'dart:ui';
-
-import 'package:cafe_sabor/features/profile/presentation/widgets/phone_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor/injection_container.dart';
 import 'package:cafe_sabor/core/base/base_page.dart';
@@ -14,6 +11,7 @@ import 'package:cafe_sabor/features/profile/presentation/widgets/user_image.dart
 import 'package:cafe_sabor/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:cafe_sabor/features/home/presentation/widget/custom_drawer.dart';
 import 'package:cafe_sabor/features/profile/presentation/widgets/image_panel.dart';
+import 'package:cafe_sabor/features/profile/presentation/widgets/phone_form_field_widget.dart';
 
 class Profile extends BasePage<ProfileState, ProfileCubit> {
   final UserModel userModel;
