@@ -2,12 +2,16 @@
 
 import 'package:cafe_sabor/config/credentials.dart';
 import 'package:cafe_sabor/core/extension/context_extension.dart';
+import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:cafe_sabor/core/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:cafe_sabor_ui_kit/cafe_sabor_ui_kit.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+
+  final UserModel? user;
+
+  const CustomDrawer({super.key, this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class CustomDrawer extends StatelessWidget {
                 icon: Icons.person_2_outlined,
                 onTap: () {
                   Scaffold.of(context).closeEndDrawer();
-                  AppNavigator.push(Routes.PROFILE);
+                  AppNavigator.push(Routes.PROFILE, arguments: user);
                 },
               ),
               SizedBox(height: context.sizeHeight() * 0.02),
@@ -61,7 +65,10 @@ class CustomDrawer extends StatelessWidget {
                 title: "RECIPES",
                 context: context,
                 icon: Icons.coffee_outlined,
-                onTap: () {},
+                onTap: () {
+                  Scaffold.of(context).closeEndDrawer();
+                  AppNavigator.push(Routes.RECIPES);
+                },
               ),
               SizedBox(height: context.sizeHeight() * 0.02),
               _generateOptions(

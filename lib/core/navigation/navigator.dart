@@ -6,6 +6,7 @@ import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:cafe_sabor/features/detail_product/presentation/pages/detail_product.dart';
 import 'package:cafe_sabor/features/my_products/presentation/pages/my_products.dart';
 import 'package:cafe_sabor/features/profile/presentation/pages/profile.dart';
+import 'package:cafe_sabor/features/recipes/presentation/pages/recipes.dart';
 import 'package:cafe_sabor/features/register_phone_number/presentation/pages/register_phone_number.dart';
 import 'package:cafe_sabor/features/register_place_residence/presentation/pages/register_place_residence.dart';
 import 'package:cafe_sabor/features/validate_phone_number/presentation/pages/validate_phone_number.dart';
@@ -19,6 +20,7 @@ enum Routes {
   HOME,
   ONBOARD,
   PROFILE,
+  RECIPES,
   MY_PRODUCTS,
   CREATE_ACCOUNT,
   DETAIL_PRODUCT,
@@ -30,6 +32,7 @@ enum Routes {
 class _Page {
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String recipes = '/recipes';
   static const String onboard = '/onboard';
   static const String myProducts = '/myProducts';
   static const String detailProduct = '/detailProduct';
@@ -41,6 +44,7 @@ class _Page {
   static const Map<Routes, String> _pageMap = {
     Routes.HOME: home,
     Routes.PROFILE: profile,
+    Routes.RECIPES: recipes,
     Routes.ONBOARD: onboard,
     Routes.MY_PRODUCTS: myProducts,
     Routes.DETAIL_PRODUCT: detailProduct,
@@ -100,7 +104,7 @@ class AppNavigator {
         );
       case _Page.profile:
         return _pageRoute(
-          page: const Profile(),
+          page: Profile(userModel: userModel),
           settings: settings,
         );
       case _Page.detailProduct:
@@ -112,6 +116,12 @@ class AppNavigator {
       case _Page.myProducts:
         return _pageRoute(
           page: const MyProducts(),
+          transitionDuration: const Duration(milliseconds: 400),
+          settings: settings,
+        );
+      case _Page.recipes:
+        return _pageRoute(
+          page: const Recipes(),
           transitionDuration: const Duration(milliseconds: 400),
           settings: settings,
         );

@@ -43,10 +43,10 @@ class UserModel {
     image: "",
     email: "",
     phone: "",
-    address: [],
+    address: [AddressModel.init()],
     password: "",
     lastName: "",
-    language: "en",
+    language: "",
     dateCreate: DateTime.now(),
   );
 
@@ -62,6 +62,15 @@ class UserModel {
     "address": List<dynamic>.from(address.map((x) => x.toJson())),
   };
 
+  Map<String, dynamic> toJsonUpdate() => {
+    "name": name,
+    "email": email,
+    "image": image,
+    "phone": phone,
+    "language": language,
+    "last_name": lastName,
+  };
+
 
   UserModel copyWith({
     String? name,
@@ -72,9 +81,11 @@ class UserModel {
     String? lastName,
     String? language,
     DateTime? dateCreate,
+    DocumentReference? id,
     List<AddressModel>? address,
   }) =>
       UserModel(
+        id: id ?? this.id,
         name: name ?? this.name,
         image: image ?? this.image,
         email: email ?? this.email,
@@ -111,6 +122,16 @@ class AddressModel {
     country: json["country"],
     position: json["position"],
     dateCreate: json["dateCreate"].toDate(),
+  );
+
+
+  factory AddressModel.init() => AddressModel(
+    city: "",
+    state: "",
+    address: "",
+    country: "",
+    position: "",
+    dateCreate: DateTime.now(),
   );
 
   Map<String, dynamic> toJson() => {

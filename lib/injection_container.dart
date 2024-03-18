@@ -1,12 +1,20 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:cafe_sabor/features/profile/domain/usecases/save_url_image_use_case.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cafe_sabor/features/detail_product/presentation/cubit/detail_product_cubit.dart';
 import 'package:cafe_sabor/features/home/data/data_sources/home_data_source.dart';
 import 'package:cafe_sabor/features/home/data/repositories/home_repository_impl.dart';
 import 'package:cafe_sabor/features/home/domain/repositories/home_auth_repository.dart';
 import 'package:cafe_sabor/features/home/domain/usecases/get_user_use_case.dart';
 import 'package:cafe_sabor/features/my_products/presentation/cubit/my_products_cubit.dart';
+import 'package:cafe_sabor/features/profile/data/data_sources/profile_data_source.dart';
+import 'package:cafe_sabor/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:cafe_sabor/features/profile/domain/repositories/profile_auth_repository.dart';
+import 'package:cafe_sabor/features/profile/domain/usecases/save_image_use_case.dart';
+import 'package:cafe_sabor/features/profile/domain/usecases/submit_use_case.dart';
 import 'package:cafe_sabor/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:cafe_sabor/features/recipes/presentation/cubit/recipes_cubit.dart';
 import 'package:cafe_sabor/features/validate_phone_number/data/data_sources/validate_phone_number_data_source.dart';
 import 'package:cafe_sabor/features/validate_phone_number/data/repositories/validate_phone_number_repository_impl.dart';
 import 'package:cafe_sabor/features/validate_phone_number/domain/repositories/validate_phone_number_repository.dart';
@@ -29,7 +37,10 @@ Future<void> init() async {
 
     //cubit
     ..registerFactory<HomeCubit>(() => HomeCubit(getUserUseCase: sl()))
-    ..registerFactory<ProfileCubit>(() =>  ProfileCubit())
+    ..registerFactory<ProfileCubit>(
+      () => ProfileCubit(saveImageUseCase: sl(), submitUseCase: sl(), saveUrlImageUseCase: sl()),
+    )
+    ..registerFactory<RecipesCubit>(() =>  RecipesCubit())
     ..registerFactory<OnboardCubit>(() => OnboardCubit())
     ..registerFactory<MyProductsCubit>(() => MyProductsCubit())
     ..registerFactory<DetailProductCubit>(() => DetailProductCubit())
@@ -39,6 +50,15 @@ Future<void> init() async {
     ..registerFactory<RegisterPlaceResidenceCubit>(() =>  RegisterPlaceResidenceCubit())
 
     //user Case
+    ..registerFactory<SaveImageUseCase>(
+      () => SaveImageUseCase(profileRepository: sl()),
+    )
+    ..registerFactory<SaveUrlImageUseCase>(
+      () => SaveUrlImageUseCase(profileRepository: sl()),
+    )
+    ..registerFactory<SubmitUseCase>(
+      () => SubmitUseCase(profileRepository: sl()),
+    )
     ..registerFactory<CreateDataUserUseCase>(
       () => CreateDataUserUseCase(validatePhoneNumberRepository: sl()),
     )
@@ -53,15 +73,20 @@ Future<void> init() async {
     ..registerFactory<ValidatePhoneNumberRepository>(
       () => ValidatePhoneNumberRepositoryImpl(validatePhoneNumberDataSource: sl()),
     )
+    ..registerFactory<ProfileRepository>(
+      () => ProfileRepositoryImpl(profileDataSource: sl()),
+    )
     ..registerFactory<HomeRepository>(
       () => HomeRepositoryImpl(homeDataSource: sl()),
     )
     //Dara source
+    ..registerFactory<ProfileDataSource>(() => ProfileDataSourceImpl(db: sl(), storage: sl()))
     ..registerFactory<HomeDataSource>(() => HomeDataSourceImpl(db: sl()))
     ..registerFactory<ValidatePhoneNumberDataSource>(() => ValidatePhoneNumberDataSourceImpl(db: sl(), auth: sl()))
 
-    
-    
+
+
     ..registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance)
+    ..registerLazySingleton<FirebaseStorage>(() => FirebaseStorage.instance)
     ..registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
 }
