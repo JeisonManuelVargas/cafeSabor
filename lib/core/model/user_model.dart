@@ -81,9 +81,11 @@ class UserModel {
     String? lastName,
     String? language,
     DateTime? dateCreate,
+    DocumentReference? id,
     List<AddressModel>? address,
   }) =>
       UserModel(
+        id: id ?? this.id,
         name: name ?? this.name,
         image: image ?? this.image,
         email: email ?? this.email,

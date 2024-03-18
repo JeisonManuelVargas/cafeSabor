@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cafe_sabor/core/extension/map_extension.dart';
 import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -16,6 +17,7 @@ class ProfileDataSourceImpl implements ProfileDataSource {
 
   @override
   Future<bool> submit(UserModel userModel) async {
+    userModel.id!.update(userModel.toJsonUpdate().withoutNulls());
     return true;
   }
 

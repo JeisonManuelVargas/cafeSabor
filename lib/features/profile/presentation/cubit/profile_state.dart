@@ -8,11 +8,10 @@ class ProfileState {
   final PageController controller;
   final List<ProductModel> products;
   final PanelController panelController;
-
+  final PhoneController phoneController;
   final TextEditingController nameController;
   final TextEditingController cityController;
   final TextEditingController emailController;
-  final TextEditingController phoneController;
   final TextEditingController stateController;
   final TextEditingController countryController;
   final TextEditingController addressController;
@@ -49,7 +48,7 @@ class ProfileState {
       panelController: PanelController(),
       nameController: TextEditingController(text: user.name),
       emailController: TextEditingController(text: user.email),
-      phoneController: TextEditingController(text: user.phone),
+      phoneController: PhoneController(initialValue: PhoneNumber(isoCode: IsoCode.CO, nsn: user.phone)),
       cityController: TextEditingController(text: addressModel.city),
       lastNameController: TextEditingController(text: user.lastName),
       stateController: TextEditingController(text: addressModel.state),

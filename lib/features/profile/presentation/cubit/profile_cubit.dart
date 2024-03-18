@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cafe_sabor/config/credentials.dart';
 import 'package:cafe_sabor/core/errors/failure.dart';
+import 'package:phone_form_field/phone_form_field.dart';
 import 'package:cafe_sabor/core/model/user_model.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:cafe_sabor/core/model/product_model.dart';
@@ -60,7 +61,11 @@ class ProfileCubit extends Cubit<ProfileState> {
     final result = await _submitUseCase(_generateUserModel());
     result.fold(
       (Failure l) => customSnackBar(context, content: l.message),
-      (bool r) async => customSnackBar(context, content: "",isSuccess: true),
+      (bool r) async => customSnackBar(
+        context,
+        content: "user edited successfully",
+        isSuccess: true,
+      ),
     );
     emit(state.copyWith(isLoading: false));
   }
@@ -83,12 +88,15 @@ class ProfileCubit extends Cubit<ProfileState> {
   void closePanel() => state.panelController.close();
 
   _generateUserModel() => UserModel.init().copyWith(
+        id: state.user.id,
         image: state.user.image,
         name: state.nameController.text,
         email: state.emailController.text,
-        phone: state.phoneController.text,
+        phone: state.phoneController.value.nsn,
         lastName: state.lastNameController.text,
       );
+
+  /*ValidatePhone()*/
 
   @override
   Future<void> close() {
@@ -97,7 +105,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     state.nameController.clear();
     state.emailController.clear();
     state.stateController.clear();
-    state.phoneController.clear();
+    state.phoneController.dispose();
     state.addressController.clear();
     state.lastNameController.clear();
     state.countryController.clear();
